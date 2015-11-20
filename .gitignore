@@ -1,0 +1,4 @@
+ *.wyil
+*.class
+.directory
+.git
