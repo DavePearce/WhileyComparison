@@ -7,7 +7,7 @@ method main(System.Console console):
 
 function copy(int[] src, int sStart, int[] dest, int dStart, int len) -> (int[] r)
 // starting points in both arrays cannot be negative
-requires sStart >= 0 && dStart >= 0 && len >= 0
+requires sStart >= 0 && dStart >= 0 && len > 0
 // Source array must contain enough elements to be copied
 requires |src| >= sStart + len
 // Destination array must have enough space for copied elements
@@ -25,9 +25,12 @@ ensures all { k in dStart + len..|dest| | r[k] == dest[k] }:
     int[] odest = dest
     //
     while i < len
-    where i >= 0
+    where 0 <= i where i <= len
+    where |dest| == |odest|
+    // all items are the same before dStart
     where all { k in 0..dStart | odest[k] == dest[k] }
-    where all { k in dStart + len..|dest| | odest[k] == dest[k] }
+    // all items after dStart are the same
+    where all { k in (dStart + len)..|dest| | odest[k] == dest[k] }
     where all { k in 0..i | dest[dStart + k] == src[sStart + k] }:
         dest[dStart + i] = src[sStart + i]
         i = i + 1

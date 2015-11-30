@@ -1,4 +1,4 @@
- *.wyil
+*.wyil
 *.class
 .directory
 .git

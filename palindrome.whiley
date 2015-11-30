@@ -1,4 +1,4 @@
- function isPalindrome(int[] chars) -> (bool r)
+function isPalindrome(int[] chars) -> (bool r)
 // Result holds iff array is a palindrome :)
 //requires |chars| != 0
 ensures r <==> all { x in 0..|chars| | chars[x] == chars[|chars| - (x + 1)] }:
