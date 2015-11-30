@@ -1,4 +1,4 @@
-method lastIndexOf(items: array<int>, item: nat) returns (r: int)
+method lastIndexOf(items: array<int>, item: int) returns (r: int)
   requires items != null
   ensures r < items.Length
   // If result is positive, element at that position must match item
