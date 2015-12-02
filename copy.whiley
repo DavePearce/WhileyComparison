@@ -17,9 +17,10 @@ ensures |r| == |dest|
 // All elements before copied region are same
 ensures all { k in 0..dStart | r[k] == dest[k] }
 // All elements in copied region match src
-ensures all { k in 0..len | src[sStart + k] == dest[dStart + k] }
+ensures all { k in 0..len | r[dStart + k] == src[sStart + k] }
 // All elements above copied region are same
-ensures all { k in dStart + len..|dest| | r[k] == dest[k] }:
+ensures all { k in dStart + len..|dest| | r[k] == dest[k] }
+:
     //
     int i = 0
     int[] odest = dest
@@ -27,11 +28,13 @@ ensures all { k in dStart + len..|dest| | r[k] == dest[k] }:
     while i < len
     where 0 <= i where i <= len
     where |dest| == |odest|
-    // all items are the same before dStart
-    where all { k in 0..dStart | odest[k] == dest[k] }
-    // all items after dStart are the same
-    where all { k in (dStart + len)..|dest| | odest[k] == dest[k] }
-    where all { k in 0..i | dest[dStart + k] == src[sStart + k] }:
+    // all items are still the same before dStart index
+    where all { k in 0..dStart | dest[k] == odest[k] }
+    // inbetween items are copied from src
+    where all { k in 0..i | src[sStart + k] == dest[dStart + k] }
+    // all items after dStart index are still the same
+    where all { k in (dStart + len)..|dest| | dest[k] == odest[k] }
+    :
         dest[dStart + i] = src[sStart + i]
         i = i + 1
     //
