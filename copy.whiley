@@ -24,10 +24,13 @@ ensures all { k in dStart + len..|dest| | r[k] == dest[k] }
     //
     int i = 0
     int[] odest = dest
+    assume all { k in 0..|dest| | dest[k] == odest[k] }
     //
     while i < len
     where 0 <= i where i <= len
     where |dest| == |odest|
+    where |dest| >= dStart + i
+    where |src|  >= sStart + i
     // all items are still the same before dStart index
     where all { k in 0..dStart | dest[k] == odest[k] }
     // inbetween items are copied from src
