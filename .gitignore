@@ -1,5 +1,7 @@
 .*
 *.wyil
 *.class
+*.dll
+*.dll.mdb
 .directory
 .git
