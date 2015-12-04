@@ -11,14 +11,17 @@ ensures r < 0 ==> all { k in 0..|ls| | ls[k] != item }
 // if found the index is returned
 ensures r >= 0 ==> some { k in 0..|ls| | ls[k] == item }
 :
-    nat i = 0
+    int i = |ls|
+    int res = -1
     
-    while i < |ls|
-    where i <= |ls|
-    where all { k in 0..i | ls[k] != item }
+    while i > 0
+    where 0 <= i where i <= |ls|
+    where -1 <= res where res < |ls|
+    where res >= 0 ==> some { k in i..|ls| | ls[k] == item }
+    where res < 0 ==> no { k in i..|ls| | ls[k] == item }
     :
+        i = i - 1
         if ls[i] == item:
-            return i
-        i = i + 1
+            res = i
     
-    return -1
+    return res
