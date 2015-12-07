@@ -1,3 +1,6 @@
+// Status: verifies and compiles
+// Copies a region of array src and overwrites the same sized region of array
+// dest.
 method copy( src: array<int>, sStart: nat, dest: array<int>, dStart: nat, len: nat)
     returns (r: array<int>)
   // both arrays cannot be null
@@ -18,29 +21,27 @@ method copy( src: array<int>, sStart: nat, dest: array<int>, dStart: nat, len: n
   
 {
     if len == 0 { return dest; }
-    assert len > 0;
     var i: nat := 0;
     r := new int[dest.Length];
+
     while (i < r.Length)
       invariant i <= r.Length
-      decreases r.Length - i
-      invariant r.Length == dest.Length
       invariant forall k: nat :: k < i ==> r[k] == dest[k]
     {
         r[i] := dest[i];
         i := i + 1;
     }
-    assume r[..] == dest[..];
+    assert r[..] == dest[..];
     i := 0;
     while (i < len)
       invariant i <= len
-      decreases len - i
-      invariant r.Length == dest.Length
-      invariant r.Length >= dStart + i
-      invariant src.Length >= sStart + i
       invariant r[..dStart] == dest[..dStart]
-      invariant r[(dStart + len)..] == dest[(dStart + len)..]
-      invariant forall k: nat :: k < i ==> r[dStart + k] == src[sStart + k]
+      invariant r[dStart..dStart + i] == src[sStart..sStart + i]
+      invariant r[dStart + len..] == dest[dStart + len..]
+// Dafny can't verify the following
+//      invariant forall k: nat :: k < i ==> r[dStart + k] == src[sStart + k]
+// even though the above line:
+//      r[dStart..dStart + i] == src[sStart..sStart + i] should prove the same cases
     {
         r[dStart + i] := src[sStart + i];
         i := i + 1;

@@ -1,3 +1,4 @@
+// Status: verified and compiled
 type nat is (int n) where n >= 0
 
 // A linear search over a sorted array looking for a given element.
@@ -5,11 +6,11 @@ function search(int[] ls, int item) -> (int r)
 //////////////////////////////////////////////
 requires |ls| > 0
 // ls is an ordered array
-requires all { k in 1..|ls| - 1 | ls[k] <= ls[k + 1] && ls[k] >= ls[k - 1] }
+requires all { k in 0..|ls| - 1 | ls[k] <= ls[k + 1] }
 // if not found return index is -1
 ensures r < 0 ==> all { k in 0..|ls| | ls[k] != item }
 // if found the index is returned
-ensures r >= 0 ==> some { k in 0..|ls| | ls[k] == item }
+ensures r >= 0 ==> ls[r] == item
 :
     nat i = 0
     
