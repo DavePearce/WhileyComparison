@@ -1,0 +1,38 @@
+# depslib dependency file v1.0
+1450215343 source:/am/state-opera/home1/stewarvivi/git/WhileyComparison/Frama-C/append.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1450230968 source:/am/state-opera/home1/stewarvivi/git/WhileyComparison/Frama-C/copy.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1450147483 source:/am/state-opera/home1/stewarvivi/git/WhileyComparison/Frama-C/find.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1447984040 source:/am/state-opera/home1/stewarvivi/git/WhileyComparison/Frama-C/first.c
+
+1450150472 source:/am/state-opera/home1/stewarvivi/git/WhileyComparison/Frama-C/insert.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1449698765 source:/am/state-opera/home1/stewarvivi/git/WhileyComparison/Frama-C/max.c
+
+1450215411 source:/am/state-opera/home1/stewarvivi/git/WhileyComparison/Frama-C/lastIndexOf.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1450215431 source:/am/state-opera/home1/stewarvivi/git/WhileyComparison/Frama-C/palindrome.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1450232373 source:/am/state-opera/home1/stewarvivi/git/WhileyComparison/Frama-C/strlen.c
+	<stdio.h>
+

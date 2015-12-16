@@ -7,7 +7,7 @@ method insertSort(arr: array<int>) returns (r: array<int>)
   requires arr != null
   ensures r != null
   ensures arr.Length == r.Length
-  ensures forall k: nat :: 0 <= k < r.Length - 1 ==> r[k] <= r[k + 1]
+  ensures sorted( r[..] )
 {
     var i: nat := 0;
     var pos: nat := 0;
@@ -20,10 +20,15 @@ method insertSort(arr: array<int>) returns (r: array<int>)
         r[i] := arr[i];
         i := i + 1;
     }
-    
+    assert r[..] == arr[..];
     i := 0;
     while (i < r.Length)
       //...
+      //invariant r != null
+      //decreases r.Length - i
+      invariant i <= r.Length
+      invariant arr.Length == r.Length
+      invariant sorted( r[..i] )
     {
         pos := findIns(r, r[i], i);
         i := i + 1;

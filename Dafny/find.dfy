@@ -1,23 +1,29 @@
+predicate sorted(s: seq<int>)
+{
+  forall i,j :: 0 <= i < j < |s| ==> s[i] <= s[j]
+}
+
 method findIns(arr: array<int>, val: int, len: nat) returns (r: nat)
   requires arr != null
   requires len < arr.Length
   // arr is an ordered array
-  requires forall k: nat :: k < len - 1 ==> arr[k] <= arr[k + 1]
+  requires sorted(arr[..len])
   // return value should not exceed len
   ensures r <= len
   // index of place of insertion is returned
   ensures forall k: nat :: k < r ==> arr[k] < val
+  ensures sorted( arr[..r] + [val] + arr[r..len] )
 {
-    var i: nat := 0;
+    r := 0;
     
-    while i < len
-      invariant i <= len
-      decreases len - i
-      invariant forall k: nat :: k < i ==> arr[k] < val
+    while r < len
+      invariant r <= len
+      decreases len - r
+      invariant forall k: nat :: k < r ==> arr[k] < val
+      invariant arr == old(arr)
     {
-        if arr[i] >= val
-          { return i; }
-        i := i + 1;
+        if arr[r] >= val
+            { return; }
+        r := r + 1;
     }
-    return i;
 }
