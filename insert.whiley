@@ -1,3 +1,8 @@
+// Status wyc-37: null pointer exception.
+//        wyc-36: loop invariant does not hold on entry
+//                where all { k in 0..index | result[k] == items[k] }
+
+
 type nat is (int n) where n >= 0
 // This function should insert the item at the given
 // index from the items array.  The resulting array is of 

@@ -1,3 +1,8 @@
+// Status wyc-37: null pointer exception.
+//        wyc-36: loop invariant not restored
+//                where all { k in 0..dStart | dest[k] == odest[k] }
+
+
 import whiley.lang.System
 
 method main(System.Console console):

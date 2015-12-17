@@ -1,3 +1,6 @@
+// Status wyc-37: verifies [1745ms].
+//        wyc-36: verifies [3987ms].
+
 // Append a single item onto the end of the array
 public function append(int[] items, int item) -> (int[] rs)
 ensures |rs| == |items| + 1:

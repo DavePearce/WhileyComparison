@@ -1,4 +1,8 @@
-// Status: causes infinite loop in verifier
+// Status wyc-37: loop invariant does not hold on entry [1192ms]
+//                where all { k in start..i | result[k] ==
+//                          arr[start + (((k + 1) - start) % len)] }
+//                (i == start on entry) --> start..start is empty.
+//        wyc-36: verification infinite loop in verifier
 type nat is (int n) where n >= 0
 
 // rotates a region of the array by one place forward

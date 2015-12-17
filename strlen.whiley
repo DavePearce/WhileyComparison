@@ -1,3 +1,6 @@
+// Status: wyc-37: verified and compiled [1197ms] ~(-7.76)
+//         wyc-36: verified and compiled [1104ms]
+
 constant NULL is 0
 
 // ASCII character is unsigned 8bit integer
@@ -8,6 +11,7 @@ type C_string is (ASCII_char[] chars) where some { i in 0..|chars| | chars[i] ==
 
 // Calculate length of string
 function strlen(C_string str) -> (int r)
+////////////////////////////////////////
 ensures r >= 0:
   //
   int i = 0

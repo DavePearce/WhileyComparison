@@ -1,8 +1,11 @@
-// Status: verifier "GC overhead limit exceeded"
+// Status wyc-37: infinite loop
+//        wyc-36: verifier "GC overhead limit exceeded"
+
 // This function should remove the item at the given
 // index from the items array, and return the resulting 
 // array otherwise unchanged.  The resulting array is of 
 // course one element shorter in length.
+
 function remove(int[] items, int index) -> (int[] r)
 ////////////////////////////////////////////////////
 requires 0 <= index && index < |items|
