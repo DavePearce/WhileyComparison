@@ -14,14 +14,15 @@ ensures r < 0 ==> all { k in 0..|ls| | ls[k] != item }
 // if found the index is returned
 ensures r >= 0 ==> ls[r] == item
 :
-    nat i = 0
-    
-    while i < |ls|
-    where i <= |ls|
-    where all { k in 0..i | ls[k] != item }
+  nat i = 0
+  
+  while i < |ls|
+  where i <= |ls|
+  where all { k in 0..i | ls[k] != item }
+  :
+    if ls[i] == item
     :
-        if ls[i] == item:
-            return i
-        i = i + 1
-    
-    return -1
+      return i
+    i = i + 1
+  
+  return -1

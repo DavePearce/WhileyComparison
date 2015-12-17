@@ -14,15 +14,16 @@ ensures r <= len
 ensures all { k in 0..r | arr[k] <  val }
 ensures all { k in r..len | arr[k] >=  val }
 :
-    nat i = 0
-    
-    while i < len
+  nat i = 0
+  
+  while i < len
 
-    where i <= len
-    where all { k in 0..i | arr[k] < val }
-    where i < (len - 1) ==> arr[i] <= arr[i + 1]
+  where i <= len
+  where all { k in 0..i | arr[k] < val }
+  where i < (len - 1) ==> arr[i] <= arr[i + 1]
+  :
+    if arr[i] >= val
     :
-        if arr[i] >= val:
-            return i
-        i = i + 1
-    return i
+      return i
+    i = i + 1
+  return i

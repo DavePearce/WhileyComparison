@@ -1,9 +1,12 @@
 #include <stdio.h>
+#include <string.h>
 
 // Calculate length of string
-/*@
+/*@ requires \exists integer k; 0 <= k <= strlen(str) && str[k] == '\0';
   @ assigns \nothing;
-  @ ensures str[\result] == '\0'; */
+  @ ensures \result == strlen(str) + 1;
+  @ ensures str[\result] == '\0';
+  @ ensures \forall integer k; 0 <= k < \result ==> str[k] != '\0'; */
 unsigned int strlength( const char* str )
 {
   unsigned int i = 0;

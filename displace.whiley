@@ -2,7 +2,7 @@
 //                where all { k in start..i | result[k] ==
 //                          arr[start + (((k + 1) - start) % len)] }
 //                (i == start on entry) --> start..start is empty.
-//        wyc-36: verification infinite loop in verifier
+//        wyc-36: verification infinite loop
 type nat is (int n) where n >= 0
 
 // rotates a region of the array by one place forward
@@ -30,8 +30,8 @@ ensures all { k in start..start + len | r[k] == arr[start + (((k + 1) - start) %
   where all { k in start..i | result[k] == arr[start + (((k + 1) - start) % len)] }
   where all { k in (start + len)..|arr| | result[k] == arr[k] }
   :
-      result[i] = arr[start + (((i + 1) - start) % len)]
-      i = i + 1
+    result[i] = arr[start + (((i + 1) - start) % len)]
+    i = i + 1
 
   assert i == (start + len)
   
