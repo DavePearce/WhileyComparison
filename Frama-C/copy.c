@@ -1,36 +1,38 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
-// starting points in both arrays cannot be negative
-//@ requires sStart >= 0 && dStart >= 0 && range > 0;
-// Source array must contain enough elements to be copied
-//@ requires \length(src) >= sStart + range;
-// Destination array must have enough space for copied elements
-//@ requires \length(dest) >= dStart + range;
-//@ assigns dest+ (dStart..dStart + range - 1);
-// Result is same size as dest
-//@ ensures \length(\result) == \length(dest);
-// All elements before copied region are same
-//@ ensures forall integer k; 0 <= k < dStart ==> r[k] == dest[k];
-// All elements in copied region match src
-//@ ensures forall integer k; 0 <= k < range ==> r[dStart + k] == src[sStart + k];
-// All elements above copied region are same
-//@ ensures forall integer k; dStart + range <= k < \length(dest) ==> r[k] == dest[k];
-
-void copy( const int src[], const unsigned int sStart
-              , int dest[], const unsigned int dStart, const size_t range )
+/*  Starting points in both arrays cannot be negative.
+    Source array must contain enough elements to be copied.
+    Destination array must have enough space for copied elements.
+    Result is same size as dest.
+    All elements before copied region are same.
+    All elements in copied region match src.
+    All elements above copied region are same.
+  */
+/*@ requires sStart >= 0;
+  @ requires dStart >= 0;
+  @ requires range > 0;
+  @ requires slen >= sStart + range;
+  @ requires dlen >= dStart + range;
+  @ requires \separated( src+ (0..(slen - 1) ), dest+ (0..(dlen - 1) ) );
+  @ requires \valid( src+ (0..(slen - 1) ) );
+  @ requires \valid( dest+ (0..(dlen - 1) ) );
+  @ assigns dest[dStart..(dStart + range)];
+  @ ensures \forall integer k; 0 <= k < range ==> dest[dStart + k] == src[sStart + k];
+  */
+void copy( const int src[], const size_t slen, const size_t sStart
+              , int dest[], const size_t dlen, const size_t dStart, const size_t range )
 {
-  unsigned int i = 0;
-  /*@loop invariant 0 <= i where i <= len
-    @loop invariant \length(dest) == \length(\old(dest)) */
-    // all items are still the same before dStart index
-  /*@loop invariant forall k integer; 0 <= k < dStart ==> dest[k] == odest[k]; */
-    // all items after dStart index are still the same
-  /*@loop invariant forall integer k; (dStart + len) <= k < |dest| ==> dest[k] == odest[k]; */
-    // inbetween items are copied from src
-  /*@loop invariant forall integer k, j;
-        sStart <= k < sStart + i, dStart <= j < dStart + i ==> src[k] == dest[j]; */
+  size_t i = 0;
+  /*All items are still the same before dStart index.
+    All items after dStart index are still the same.
+    Inbetween items are copied from src.
+    */
+  /*@ loop assigns i, dest[dStart..(dStart + i)];
+    @ loop invariant 0 <= i <= range;
+    @ loop invariant \forall integer k; 0 <= k < i ==> src[sStart + k] == dest[dStart + k];
+    @ loop variant range - i;
+    */
   while( i < range )
   {
       dest[dStart + i] = src[sStart + i];
@@ -38,15 +40,27 @@ void copy( const int src[], const unsigned int sStart
   }
 }
 
-void fillarr( int* items, size_t len, unsigned int from )
+/*@ requires len > 0;
+  @ requires \valid( items+ ( 0..(len - 1) ) );
+  @ assigns items[0..(len - 1)];
+  @ ensures \forall integer k; 0 <= k < len ==> items[k] == k;
+  */
+void fillarr( int* items, size_t len )
 {
+  /*@ loop assigns i, items[0..(i - 1)];
+    @ loop invariant \forall integer k; 0 <= k < i ==> items[k] == k;
+    @ loop variant len - i; */
   for ( int i = 0; i < len; ++i )
-    items[i] = i + from;
+    items[i] = i;
 }
 
+/*@ requires len > 0;
+  @ assigns \nothing; */
 void printarr( int* items, size_t len )
 {
   printf( "array = [ " );
+  /*@ loop assigns i;
+    @ loop variant len - i; */
   for(int i = 0; i < len - 1; i++)
     printf( "%d ,", items[i] );
   printf( len > 0 ? "%d ]\n" : "]\n", items[len - 1] );
@@ -55,8 +69,8 @@ void printarr( int* items, size_t len )
 int main()
 {
   int src[] = { 6, 7, 8, 9, 10 };
-  int* res = malloc( 5 * sizeof(int) );
-  fillarr( res, 5, 1 );
-  copy( src, 1, res, 1, 3 );
+  int res[] = malloc( 5 * sizeof(int) );
+  fillarr( res, 5 );
+  copy( src, 5, 1, res, 5, 1, 3 );
   printarr( res, 5 );
 }

@@ -1,3 +1,7 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 // Status: verifier "GC overhead limit exceeded"
 // This function should remove the item at the given
 // index from the items array, and return the resulting
@@ -10,7 +14,7 @@
   @ ensures forall integer k; 0 <= k < index ==> \result[k] == \old(items[k]);
   @ ensures forall integer k; index <= k < (len-1) ==> r[k] == items[k + 1];
 */
-int *remove( int items[], unsigned int len , unsigned int index)
+int *remv( int items[], unsigned int len , unsigned int index)
 {
   unsigned int newlen = len - 1;
   unsigned int i = index;

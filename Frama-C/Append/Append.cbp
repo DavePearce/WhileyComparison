@@ -31,6 +31,42 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="../append.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../copy.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../displace.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../find.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../first.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../insert.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../lastIndexOf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../max.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../palindrome.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../remove.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../search.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../strlen.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<envvars />
