@@ -1,3 +1,4 @@
+// Status: verifies and compiles
 // This function should insert the item at the given
 // index from the items array.  The resulting array is of 
 // course one element longer in length.

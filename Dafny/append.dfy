@@ -1,3 +1,4 @@
+// Status: verifies and compiles
 // Append a single item onto the end of the array
 method append( items: array<int>, item: int ) returns (r: array<int>)
   requires items != null && items.Length > 0

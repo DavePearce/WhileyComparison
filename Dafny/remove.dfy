@@ -1,3 +1,4 @@
+// Status: verifies and compiles
 // This function should remove the item at the given
 // index from the items array, and return the resulting 
 // array otherwise unchanged.  The resulting array is of 

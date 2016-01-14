@@ -1,3 +1,4 @@
+// Status: verifies and compiles
 // Result holds iff array is a palindrome :)
 method isPalindrome(chars: array<int>) returns (r: bool)
   requires chars != null

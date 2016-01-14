@@ -1,3 +1,4 @@
+// Status: verifies and compiles
 // Calculate length of string
 method strlen(str: array<char>) returns (r: nat)
   requires str != null

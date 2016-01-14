@@ -1,3 +1,4 @@
+// Status: verifies and compiles
 method lastIndexOf(items: array<int>, item: int) returns (r: int)
   requires items != null
   ensures r < items.Length

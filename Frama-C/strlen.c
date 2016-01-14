@@ -2,15 +2,18 @@
 #include <string.h>
 
 // Calculate length of string
-/*@ requires \exists integer k; 0 <= k <= strlen(str) && str[k] == '\0';
+/*@ requires \valid( str+ (0..strlen(str)) );
+  @ requires \exists integer k; 0 <= k <= strlen(str) && str[k] == '\0';
   @ assigns \nothing; // neither changes the arguments nor any objects outside the scope.
-  @ ensures \result == strlen(str) + 1;
+  @ ensures \result == strlen(str);
   @ ensures str[\result] == '\0';
   @ ensures \forall integer k; 0 <= k < \result ==> str[k] != '\0'; */
 unsigned int strlength( const char* str )
 {
   unsigned int i = 0;
-  /*@ loop invariant i >= 0;
+  /*@ loop assigns i;
+    @ loop variant strlen(str) - i;
+    @ loop invariant i >= 0;
     @ loop invariant \forall integer k; 0 <= k < i ==> str[k] != '\0'; */
   while ( str[i] != '\0' ) ++i;
 
