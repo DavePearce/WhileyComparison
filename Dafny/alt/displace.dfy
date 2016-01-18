@@ -1,6 +1,5 @@
-// Status: verifier infinite loop
+// Status: verifies and compiles
 // rotates a region of the array by one place forward
-
 predicate rotated(o:seq<int>, r:seq<int>) 
   requires |o| == |r|
 {
@@ -10,6 +9,7 @@ predicate rotated(o:seq<int>, r:seq<int>)
 
 method displace(arr: array<int>, start: nat, len: nat) returns (r: array<int>)
   requires arr != null
+  requires len > 0
   requires start + len <= arr.Length
   ensures r != null && r.Length == arr.Length
   ensures arr[..start] == r[..start]
@@ -21,28 +21,26 @@ method displace(arr: array<int>, start: nat, len: nat) returns (r: array<int>)
   while i < start
     invariant i <= start
     invariant forall k: nat :: k < i ==> r[k] == arr[k]
-    {
-      r[i] := arr[i];
-      i := i + 1;
-    }
-    
-    assert arr[..start] == r[..start];
+  {
+    r[i] := arr[i];
+    i := i + 1;
+  }
   
-  if len > 0 {
-    r[start] := arr[start+len-1];
-    
-    assert r[start] == arr[start+len-1];
-    
-    i := start+1;
-    while i < start+len
-      invariant start < i <= start+len
-      invariant arr[..start] == r[..start]
-      invariant r[start] == arr[start+len-1]
-      invariant forall k: nat :: start < k < i ==> r[k] == arr[k-1]
-      {
-        r[i] := arr[i-1];
-        i := i + 1;
-      }
+  assert arr[..start] == r[..start];
+
+  r[start] := arr[start+len-1];
+  
+  assert r[start] == arr[start+len-1];
+  
+  i := start+1;
+  while i < start+len
+    invariant start < i <= start+len
+    invariant arr[..start] == r[..start]
+    invariant r[start] == arr[start+len-1]
+    invariant forall k: nat :: start < k < i ==> r[k] == arr[k-1]
+  {
+    r[i] := arr[i-1];
+    i := i + 1;
   }
   
   assert rotated(arr[start .. start+len], r[start .. start+len]);
@@ -53,8 +51,8 @@ method displace(arr: array<int>, start: nat, len: nat) returns (r: array<int>)
     invariant arr[..start] == r[..start]
     invariant rotated(arr[start .. start+len], r[start .. start+len])
     invariant forall k: nat :: start+len <= k < i ==> r[k] == arr[k]
-    {
-      r[i] := arr[i];
-      i := i + 1;
-    }
+  {
+    r[i] := arr[i];
+    i := i + 1;
+  }
 }

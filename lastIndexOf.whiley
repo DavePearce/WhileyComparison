@@ -10,9 +10,9 @@ ensures r >= 0 ==> all { x in (r + 1)..|items| | items[x] != item }
 ensures r < 0 ==> no { x in 0..|items| | items[x] == item }
 :
   int i = |items|
-  while i > 0
+  while i >= 0
   // i is decreasing and no element at greater position matches item
-  where i <= |items|
+  where 0 <= i && i <= |items|
   where no { x in i..|items| | items[x] == item }
   :
     i = i - 1
