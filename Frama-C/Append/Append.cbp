@@ -37,6 +37,7 @@
 		<Unit filename="../copy.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../copy.h" />
 		<Unit filename="../displace.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -46,6 +47,10 @@
 		<Unit filename="../first.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../include.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../include.h" />
 		<Unit filename="../insert.c">
 			<Option compilerVar="CC" />
 		</Unit>

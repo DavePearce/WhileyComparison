@@ -1,4 +1,0 @@
- 
-In general, there are two main causes for Dafny verification errors:
-  specifications that are inconsistent with the code, and situations where it
-  is not "clever" enough to prove the required properties.

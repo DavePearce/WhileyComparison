@@ -17,7 +17,7 @@ ensures all { k in r..len | arr[k] >=  val }
   nat i = 0
   
   while i < len
-
+  /////////////
   where i <= len
   where all { k in 0..i | arr[k] < val }
   where i < (len - 1) ==> arr[i] <= arr[i + 1]
