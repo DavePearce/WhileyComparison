@@ -1,9 +1,7 @@
 // Status wyc-37: null pointer exception
-//        wyc-36: 37: loop invariant not restored
-//
+//        wyc-36: line 37: loop invariant not restored
 type nat is (int n) where n >= 0
 
-// rotates a region of the array by one place forward
 function displace( int[] arr, nat start, nat len) -> (int[] r)
   requires len > 0
   requires start + len <= |arr|

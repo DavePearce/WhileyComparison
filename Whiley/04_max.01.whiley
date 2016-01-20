@@ -1,21 +1,18 @@
-// Status wyc-37: verifies [1745ms]. ~228.48% improvment
-//        wyc-36: verifies [3987ms].
-
-// Append a single item onto the end of the array
+// Status wyc-37: verifies.
+//        wyc-36: verifies.
 public function maxArray(int[] items) -> (int max)
-//////////////////////////////////////////////////
-requires |items| > 0
-ensures some { k in 0..|items| | max >= items[k] }
+  requires |items| > 0
+  ensures all { k in 0..|items| | max >= items[k] }
 :
-  // The goal is to implement, specify and verify this function!
   int i = 1
   int r = items[0]
-  //
+  
   while i < |items|
-  where 0 < i && i <= |items| 
+    where 0 < i && i <= |items|
+    where all { k in 0..i | r >= items[k] }
   :
-      if items[i] > r:
-        items[i] = r
-      i = i + 1
-  //
+    if items[i] > r:
+      r = items[i]
+    i = i + 1
+  
   return r

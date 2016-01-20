@@ -1,35 +1,36 @@
 // Status: verifies and compiles?...no
-//         ( if a[mid] < key:, index out of bounds (negative) )
-// Search through a sorted list by way of narrowing the search by half upon
-// each iteration. rerturns the index of item or -1 if not found
+//         ( if items[mid] < key:, index out of bounds (negative) )
 type nat is (int n) where n >= 0
 
-method BinarySearch( int[] a, int key ) -> (int r)  
-//////////////////////////////////////////////////
-requires all { i in 0..|a|, j in 0..|a| | i <= j ==> a[i] <= a[j] }
-ensures r >= 0 ==> r < |a| && a[r] == key
-ensures r < 0  ==> all { k in 0..|a| | a[k] != key }
+method binarySearch( int[] items, int key ) -> (int r)
+  requires |items| > 0
+  requires all { j in 0..|items|, k in 0..|items|
+               | j < k ==> items[j] <= items[k] }
+  ensures r >= 0 ==> r < |items| && items[r] == key
+  ensures r < 0  ==> all { k in 0..|items| | items[k] != key }
 :
   nat low = 0
-  nat high = |a|
+  nat high = |items|
   nat mid = 0
 
   while low < high
-  ////////////////
-  where high <= |a|
-  where  low <= |a|
-  where  mid <= |a|
-  where  low <= high 
-  where  low <= mid
-  where  mid <= high
-  // elements outside the search range are not eqaul to key
-  where all { i in 0..|a| | !(low <= i && i < high) ==> a[i] != key }
+    where low <= mid
+    where mid < high
+    where high <= |items|
+    // elements outside the search range do not equal key
+    where no { i in 0..low, j in high..|items|
+              | items[i] != key && items[j] == key }
   :
     mid = (low + high) / 2
-    if a[mid] < key:
+    
+    if items[mid] < key
+    :
       low = mid + 1
-    else if key < a[mid]:
+    else if key < items[mid]
+    :
       high = mid
-    else:
+    else
+    :
       return mid
+  
   return -1

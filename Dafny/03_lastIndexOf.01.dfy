@@ -22,4 +22,3 @@ method lastIndexOf(items: array<int>, item: int) returns (r: int)
     // didn't find item in entire list
     r := -1;
 }
-

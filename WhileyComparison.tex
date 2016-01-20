@@ -1,0 +1,249 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[10pt]{article} % use larger type; default would be 10pt
+
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margin=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{listings}
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+\usepackage{pifont}
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+\definecolor{lightgray}{gray}{0.85}
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{Whiley Comparison}
+\author{Vivian Stewart}
+%\date{} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+\lstloadlanguages{Java}
+\lstset{
+        language=Java,
+        keywords={function, method, type, constant, assert, assume, for, while, switch, is, if, case, return,
+          else, package, define, as, requires, ensures, where, no, new,
+          all, bool, int, byte, char, string, void, real, in, any,
+          null, var, public, protected, private, native, export, skip, break, do,
+          throws, catch, continue, default, try
+        },
+        basicstyle=\ttfamily\footnotesize,
+        commentstyle=\rmfamily\footnotesize,
+        stringstyle=\itshape\footnotesize,
+        moredelim=*[s][commentstyle]{/*}{*/}, % allows keyword highlighting inside comments
+        morecomment=[l][commentstyle]{//},      % single line comments are set by...
+        backgroundcolor=\color{lightgray},
+	 commentstyle=\color{Sepia},
+	 keywordstyle=\color{MidnightBlue},
+        frame=single, % adds a frame around the code
+%        frameround=tttt,
+        framesep=0.25cm,
+        texcl,                                                          % ...LaTeX
+        moredelim=[is][\ttfamily]{<code>}{</code>}, % allows setting code inside multi-line comments
+        moredelim=*[s][\ttfamily]{/*@}{*/}, % JML annotations
+        moredelim=*[l][\ttfamily]{//@}, % JML annotations
+        moredelim=**[is][\itshape]{/_}{_/}, % allows emphasizing sub-expressions
+        moredelim=**[is][\bfseries]{/b_}{_b/}, % allows emphasizing sub-expressions
+        escapeinside={(*@}{@*)}, %use (*@\label{line:desc}@*) to label lines for \ref
+        mathescape=true,                % allow $ $ for math mode (will this break things?}
+        tabsize=4,
+	tab=\rightarrowfill,
+        xleftmargin=0.25cm,
+        xrightmargin=0.25cm,
+        showspaces=false,
+        showtabs=false,
+        columns=fullflexible,
+        numberstyle=\tiny,
+        numbers=left,
+        keepspaces=true,
+        mathescape=true, % allows $ to switch in and out of math mode within listings
+        literate={tau}{{$\tau$}}1 {tau'}{{$\tau\prime$}}1 {(|}{{$\lpbar$}}1 {---}{{$\hole$}}1
+           {-*-}{{$\times$}}1 {||_}{{$\lceilfloor$}}1 {_||}{{$\rceilfloor$}}1
+           {/0}{{$\emptyset$}}1 {/bul}{{$\unit$}}1 {:->}{{$\mapsto$}}1
+           {~}{$\sim$}1,
+}
+
+\begin{abstract}
+
+\end{abstract}
+
+\section{Introduction}
+
+\section{Benchmarks}
+
+\subsection{palindrome} 
+Scans through an array from the outer elements in towards the centre searching for a mismatch in characters in which case returning false if there is such a mismatch and returning true if there is no such mismatch.
+\lstinputlisting{Whiley/01_palindrome.01.whiley}
+\subsection{firstIndexOf}
+Finds the first index where the specified element is found in the given array of integers, searching through the array from the zero index in the positive direction.
+\lstinputlisting{Whiley/02_firstIndexOf.01.whiley}
+\subsection{lastIndexOf}
+Finds the last index where the specified element is found in the given array of integers, searching through the array from the the highest index in the negative direction.
+\lstinputlisting{Whiley/03_lastIndexOf.01.whiley}
+\subsection{max}
+Searches the entire list in order to find and return the largest integer found.
+\lstinputlisting{Whiley/04_max.01.whiley}
+\subsection{occurences}
+Returns the number of duplicate elements of the given element in the given array.
+\lstinputlisting{Whiley/05_occurences.01.whiley}
+\subsection{strlen}
+Counts the number of characters in a string of characters, having come to the end of the list when encountering a null character.
+\lstinputlisting{Whiley/06_strlen.01.whiley}
+\subsection{linearSearch}
+Return the index in the given array of the first occurrence of an element matching the given value. Previously the find function was to find an insertion point into the sorted array where the value would be inserted and the array would still be ordered. 
+\lstinputlisting{Whiley/07_linearSearch.01.whiley}
+\subsection{binarySearch}
+Using the divide and conquer method to find the index of an element in the given array matching the given value.
+\lstinputlisting{Whiley/08_binarySearch.01.whiley}
+\subsection{append}
+Adds a single element to the end of the array by making a new array that is one element larger than the original and copies the original array in order to the lower elements and inserting the given value in the last index.
+\lstinputlisting{Whiley/09_append.01.whiley}
+\subsection{remove}
+The remove function should remove the item at the given index from the given array of integers and return the resulting array otherwise unchanged. The resulting array is of course one element shorter in length. This is done by creating a new array one smaller in size and then copying across the elements before the given index directly, followed by copying across elements above the index to a position one index lower and overwriting the removed element.
+\lstinputlisting{Whiley/10_remove.01.whiley}
+\subsection{copy}
+...
+\lstinputlisting{Whiley/11_copy.01.whiley}
+\subsection{displace}
+rotates a region of the array by one place forward
+\lstinputlisting{Whiley/12_displace.01.whiley}
+\subsection{insert}
+This function should insert the item at the given index from the items array.  The resulting array is of course one element longer in length.
+\lstinputlisting{Whiley/13_insert.01.whiley}
+\subsection{insertionSort}
+...
+\section{Results \& Discussion}
+\begin{center}
+\begin{tabular}{| l | c | c | c | c | c | c | c |}
+	\hline
+	Env. & Palin. & FIO & LIO & Max & Occ & Slen & LSrch \\ \hline \hline
+	Whiley & \ding{51} & \ding{51} & \ding{51} &\ding{51} & \ding{56} & \ding{51} & \ding{51} \\ \hline
+	Dafny & \ding{51} & \ding{51} & \ding{51} &\ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+	\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{| l | c | c | c | c | c | c | c |}
+	\hline
+	Env. & BSrch & Appd & Remv & Copy & Dplc & Inst & InSrt \\ \hline \hline
+	Whiley & \ding{56} & \ding{51} & \ding{56} &\ding{56} & \ding{56} & \ding{56} & \ding{56} \\ \hline
+	Dafny & \ding{51} & \ding{51} & \ding{51} &\ding{51} & \ding{51} & \ding{51} & \ding{51} \\
+	\hline
+\end{tabular}
+\end{center}
+Whiley allows you to do more with less, minimal syntax but more expressive. (IMPORTANT!! flexible language constructs)… Dafny has more complicated syntax to deal with memory management i.e pointers\slash references, lots to remember and coordinate.
+The tools Dafny provides are for the development of proofs in a “top-down” manner, and which allow us to concentrate on the “architecture” of the proof. Unlike Frama-C.
+Deduction of bounds of different variables seems to not work in Whiley (not array bounds.)
+TODO: insert(), merge(), binarySearch(), qsort()
+The semantics of logic expressions in ACSL (Frama-C), Whiley and Dafny are based on mathematical first-order logic.
+With Frama-C in particular, it is a 2-valued logic with only total functions. Consequently, expressions are never “undefined”. Having only total functions implies that one can write terms such as 1\slash 0, or *p when p is null.
+Specifications in Frama-C can have implicit casts between C-types and Mathematical types (something to watch out for.)
+Weird:
+
+\begin{itemize}
+\item 5\slash 3 is 1 and 5 \% 3 is 2;
+\item (-5)\slash 3 is -1 and (-5) \% 3 is -2;
+\item 5\slash (-3) is -1 and 5 \% (-3) is 2;
+\item (-5)\slash (-3) is 1 and (-5) \% (-3) is -2.
+\end{itemize}
+
+Frama-C Degree of Completeness The previous section has taught us that writing a fairly complete specification (in fact we could still add some clauses to the specification above, as we will see in the next chapters) is not immediate, and thus that it is easy to come up with only a partial specification. Hence, it raises two frequently asked questions: how can we be sure that our specification is complete, and how complete must a specification be. The answers however do not lie in ACSL itself. For the first one, one must reason on some model of the specified application. For the second one, there is no definite answer. It depends on the context in which the specification is written and the kind of properties that must be established: the amount of specification required for a given function is very different when verifying a given property for a given application in which calls to the function always occur in a well-defined context and when specifying it as a library function which should be callable in as many contexts as possible.
+
+Frama-C When no 'assigns' clauses are specified, the function is allowed to modify every visible variable.
+\begin{description}
+\item[Termintes]It is possible to relax a particular function’s specification by providing a formula that describes the conditions in which the function is guaranteed to terminate. 
+\item[Assertions]when the analyzer is not able to determine that an assertion always holds, it may be able to produce a pre-condition for the function that would, if it was added to the function’s contract, ensure that the assertion was verified. 
+\item[Overflow] overflow is\slash must be handled.
+\end{description}
+
+\lstset{language=C,morekeywords={
+	case,inductive,behavior,behaviors,requires,ensures,assumes,complete,disjoint,\old,\forall,\valid
+}}
+
+\begin{lstlisting}
+	inductive reachable{L} (list* root, list* node) {
+	  case root_reachable{L}:
+	    \forall list* root; reachable(root,root);
+	  case next_reachable{L}: // L indicates a Label -> memory state
+	    \forall list* root, *node;
+	      \valid(root) ==> reachable(root -> next, node) ==>
+	        reachable(root,node);
+\end{lstlisting}
+\begin{lstlisting}
+	requires \valid(p) && \valid(q);
+	ensures *p <= *q; // pointers
+	behavior p_minimum:
+		assumes *p < *q;
+		ensures *p == \old(*p) && *q == \old(*q);
+	behavior q_minimum:
+		assumes *p >= *q;
+		ensures *p == \old(*q) && *q == \old(*p);
+	complete behaviors p_minimum, q_minimum;
+	disjoint behaviors p_minimum, q_minimum;
+\end{lstlisting}
+
+No verifier can tell you whether your code doesn't work the according to the specification or the specification doesn't describe what the code does, as this depends on the intention of the user\slash developer.
+Frama-C ACSL specification language lacks flexible language constructs, very cumbersome\slash specialised syntax.
+
+All languages need different forms of verification and to different degrees. Sensitivity to approach to the problem.
+\subsection{Whiley}
+	Whiley is very easy to use and shows promise as a tool to verify programs in such a way that the accompanying specification scales with complexity of the program to be verified. Whiley offers a simplified program and specification definition. However, Whiley's underlying prover needs some work to bring Whiley up to the level attained by other tools. Arrays in Whiley are not reference or pointer types, there is no possibility of the array being null, also copying of an array is just a matter of assigning that array to a different variable, bypassing the issue of specifying array copying loops. Some basic arithmetic and region ranges seem to be difficult for the whiley constraint solver (WyCS.)
+\subsection{Dafny}
+	Dafny is a sophisticated tool\slash language for verification based on Microsofts' Z3 prover and Boogie with Monodevelop\slash Visual Studio. Though tests were performed on the command line to gain feedback from Dafny. Dafny can use pure functional code to help prove the correctness of imperative code for instance, only functions can used in specification unless qualified as 'function method'. These pure function definitions require very minimal specification in order to provide lemmas, axioms and other mathematical constructs to prove correct execution. One thing that struck me as odd was the use of short circuit logic in the specifications which implies a certain order to the specifications statements. Dafny doesn't require return statements in the usual way and defines a return variable(s) that is assigned to, and if necessary a 'return' can be called for early return from the call. Explicit and obvious reference to the returned variable was very convenient. All function\slash method parameters are immutable unless specified otherwise.
+	Inside the specifications arrays are treated differently from other containers but are implicitly convertible to the built in sequence type if needed. Which allows for the very convenient syntax: arr1[m..n] == arr2[m..n] for an adjacent element comparison avoiding the need for long winded predicates. But not so convenient in that a sequence cannot be easily converted back to an array. Arrays are always possibly null in Dafny and the there are attempts in the specification language to mitigate the issue of reference aliasing and other such memory management quirks (modifies clause.) Unlike Whiley arrays are of reference type and need to be null checked.
+\subsection{Frama-C}
+	When it comes to verifying C code Frama-C seems to be a current industry favourite. But I found the user gtk interface to be cumbersome and confusing. The ACSL language would appear to appeal more to an expert C programmer which I am not. Much expertise is needed to master Frama-C and every aspect and plugin have large manuals and tutorials available, all very heavy in detail. What I really wanted was a more general tool that would help point out where errors in my reasoning were evident. Frama-C offers only the vaguest of clues and errors in my reasoning are not always obvious. The issues of bounded types are dealt with up front and checked with the WP plugin through an RTE (runtime error) option that injects (over\slash under)flow checks. Specifications are meant to be written in a style that complements C and is analogous to C, even mirroring C conventions and C arithmetic. The lack of consolidation makes the various plugins difficult to integrate into a workflow. The ACSL specification language is littered with predefined predicates and detailed set of proof tools such as user defined predicates, behaviours, inductive(recursive) functions and axioms etc. Arrays were a very sticky issue in Frama-C and involve proof of non-null and the validation of the range of indices and elements. For loop invariants, proof of termination is provided by the loop 'variant' key word, which is hard to see in amongst loop 'invariant' clauses in the same comment code block. Also there are assigns clauses that define the frame of modification for both the function and loop invariants (loop assigns.) since unlike other tools Frama-C has no knowledge of what has been modified in the function or inside the loop (side effects). Since the C language does not have formal semantics one should take the verification of C code with a grain of salt, horribly coded nonsense with undefined results can still be verified.
+\subsection{Spec\#}
+	Spec\# having the same underlying workings as Dafny (a.k.a Boogie and Z3) if there are many differences between the two.
+
+\end{document}
