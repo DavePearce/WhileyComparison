@@ -1,11 +1,11 @@
-// Status wyc-37: verification infinite loop.
-//        wyc-36: postcondition not satisfied -> return i (line:26)
+// Status wyc-37: verifies [49640ms]
+//        wyc-36: verifies [76839ms]
 type nat is (int n) where n >= 0
 
 function linearSearch(int[] arr, int val, nat len) -> (nat r)
   requires len < |arr|
   // arr is an ordered array
-  requires all { j in 0..len, k in 0..len | j < k ==> arr[j] <= arr[k] }
+  requires all { k in 0..len - 1 | j < k ==> arr[j] <= arr[k] }
   // return value should not exceed len
   ensures r <= len
   // index of place of insertion is returned

@@ -17,9 +17,9 @@ method search(ls: array<int>, item: int) returns (r: int)
       decreases ls.Length - i
       invariant forall k: nat :: k < i ==> ls[k] != item
     {
-        if ls[i] == item
-          { return i; }
-        i := i + 1;
+      if ls[i] == item
+        { return i; }
+      i := i + 1;
     }
     return -1;
 }

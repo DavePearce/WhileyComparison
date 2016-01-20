@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (Web2C 2015) (preloaded format=pdflatex 2015.12.17)  20 JAN 2016 11:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (Web2C 2015) (preloaded format=pdflatex 2015.12.17)  20 JAN 2016 16:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -657,7 +657,7 @@ File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 Here is how much of TeX's memory you used:
  6696 strings out of 493889
  95096 string characters out of 6158402
- 218895 words of memory out of 5000000
+ 218870 words of memory out of 5000000
  9846 multiletter control sequences out of 15000+600000
  10730 words of font info for 38 fonts, out of 8000000 for 9000
  774 hyphenation exceptions out of 8191
@@ -671,7 +671,7 @@ onts/type1/public/amsfonts/cm/cmr5.pfb></usr/pkg/share/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmss12.pfb></usr/pkg/share/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmsy10.pfb></usr/pkg/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 tt8.pfb></usr/pkg/share/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on WhileyComparison.pdf (12 pages, 149483 bytes).
+Output written on WhileyComparison.pdf (12 pages, 149656 bytes).
 PDF statistics:
  83 PDF objects out of 1000 (max. 8388607)
  58 compressed objects within 1 object stream
