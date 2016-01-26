@@ -30,6 +30,7 @@
 \usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
 \usepackage{listings}
 \usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+\usepackage{multicol}
 % These packages are all incorporated in the memoir class to one degree or another...
 
 %%% HEADERS & FOOTERS
@@ -76,9 +77,9 @@
           null, var, public, protected, private, native, export, skip, break, do,
           throws, catch, continue, default, try
         },
-        basicstyle=\ttfamily\footnotesize,
-        commentstyle=\rmfamily\footnotesize,
-        stringstyle=\itshape\footnotesize,
+        basicstyle=\ttfamily\tiny,
+        commentstyle=\rmfamily\tiny,
+        stringstyle=\itshape\tiny,
         moredelim=*[s][commentstyle]{/*}{*/}, % allows keyword highlighting inside comments
         morecomment=[l][commentstyle]{//},      % single line comments are set by...
         backgroundcolor=\color{lightgray},
@@ -96,7 +97,7 @@
         escapeinside={(*@}{@*)}, %use (*@\label{line:desc}@*) to label lines for \ref
         mathescape=true,                % allow $ $ for math mode (will this break things?}
         tabsize=4,
-	tab=\rightarrowfill,
+        tab=\rightarrowfill,
         xleftmargin=0.25cm,
         xrightmargin=0.25cm,
         showspaces=false,
@@ -117,51 +118,56 @@
 \end{abstract}
 
 \section{Introduction}
+From an undergraduate perspective one might approach verification with optimistic positivity, ``I can go about proving all of the programs I've contributed to, all of the weird algorithms I've always wondered about'' etc. However the truth of Software Verification is in actuality much more of a field of research with very limited tools and steep learning curve. Current efforts are impressive from an academic point of view and require years of invested effort to learn the various analyses and how these pieces fit together to prove correctness of program execution.
+
+There are some interesting tools that have developed recently, making for an easier more tractable learning curve and easing the burden of proof for the programmers whom are a bit intimidated by formal specification or those who found other tools too much effort for meagre results. 
 
 \section{Benchmarks}
+Selected benchmarks were intended to be simple since the verification of large blocks of code are exponentially asymptotic in logical deduction and\slash or not decidable in the worst case. The benchmarks range from simple to reasonably complex. Some of them were exercises recommended by David Pierce, where as others were suggested by Lindsey Grooves. To begin with, the main Idea of this project was to create some small programs for use in lecture slides or as examples in tutorials. 
 
 \subsection{palindrome} 
-Scans through an array from the outer elements in towards the centre searching for a mismatch in characters in which case returning false if there is such a mismatch and returning true if there is no such mismatch.
-\lstinputlisting{Whiley/01_palindrome.01.whiley}
+Scans through an array from the outer elements inwards to the centre, searching for a mismatch in characters in which case returning false if there is such a mismatch and returning true if there is no such mismatch.
+
 \subsection{firstIndexOf}
-Finds the first index where the specified element is found in the given array of integers, searching through the array from the zero index in the positive direction.
-\lstinputlisting{Whiley/02_firstIndexOf.01.whiley}
+Finds the first index where the specified element is found in the given array of integers, searching through the array from the zero index in the positive direction. returns immediately the item is found, otherwise traverses the entire array then returns -1 to represent the absence of the value in the array.
+
 \subsection{lastIndexOf}
-Finds the last index where the specified element is found in the given array of integers, searching through the array from the the highest index in the negative direction.
-\lstinputlisting{Whiley/03_lastIndexOf.01.whiley}
+Finds the last index where the specified element is found in the given array of integers, searching through the array from the the highest index in the negative direction. A lot like the firstIndexOf function in that the entire array is traversed if the value is not found but quits early if the value is found.
+
 \subsection{max}
-Searches the entire list in order to find and return the largest integer found.
-\lstinputlisting{Whiley/04_max.01.whiley}
+Searches the entire list in order to find and return the largest integer found. Accumulating the maximum value evaluated so far, as the algorithm traverses the array. 
+
 \subsection{occurences}
-Returns the number of duplicate elements that hold a given value in the given array.
-\lstinputlisting{Whiley/05_occurences.01.whiley}
+Returns the number of duplicate elements that hold a given value in the given array. Accumulating a count of elements in the array matching the given value. The proof requires counting which is an interesting conundrum.
+
 \subsection{strlen}
-Counts the number of characters in a string of characters, having come to the end of the list when encountering a null character.
-\lstinputlisting{Whiley/06_strlen.01.whiley}
+The \textbf{strlen} function is intended to mirror the C function of the same name. It counts the number of characters in a string (array) of characters, having come to the end of the list when encountering a null character. The null character is usually denoted as '\textbackslash0', but since there is no char type currently available in Whiley, instead we have to use an abstraction of this data type. Ascii characters are bytes (8 bits) their range of values is between 0 and 255 inclusive and the null character is 0.
+
 \subsection{linearSearch}
-Return the index in the given array where the first occurrence of an element matching the given value would be inserted. Previously the find function was to find an insertion point into the sorted part of array where the value would be inserted into the part of the array and would still be sorted.
-\lstinputlisting{Whiley/07_linearSearch.01.whiley}
+Much like the firstIndexOf function but iterates through a sorted list and can therefore quit early when the element matching the value is either found or the value is exceeded by the current element. Previous versions returned the index in the given array where the first occurrence of an element matching the given value would be inserted. Or to find an insertion point into the sorted part of the array where the value, upon insertion into that part of the array and maintain sorted order.
+
 \subsection{binarySearch}
 Using the divide and conquer method to find the index of an element in the given array matching the given value.
-\lstinputlisting{Whiley/08_binarySearch.01.whiley}
+
 \subsection{append}
 Adds a single element to the end of the array by making a new array that is one element larger than the original and copies the original array in order to the lower elements and inserting the given value in the last index.
-\lstinputlisting{Whiley/09_append.01.whiley}
+
 \subsection{remove}
 The remove function should remove the item at the given index from the given array of integers and return the resulting array otherwise unchanged. The resulting array is of course one element shorter in length. This is done by creating a new array one smaller in size and then copying across the elements before the given index directly, followed by copying across elements above the index to a position one index lower and overwriting the removed element.
-\lstinputlisting{Whiley/10_remove.01.whiley}
+
 \subsection{copy}
-...
-\lstinputlisting{Whiley/11_copy.01.whiley}
+Copies a region of the source array into a same sized region of the destination. 
+
 \subsection{displace}
 rotates a region of the array by one place forward
-\lstinputlisting{Whiley/12_displace.01.whiley}
+
 \subsection{insert}
 This function should insert the item at the given index from the items array.  The resulting array is of course one element longer in length.
-\lstinputlisting{Whiley/13_insert.01.whiley}
+
 \subsection{insertionSort}
 ...
 \section{Results \& Discussion}
+
 \begin{center}
 \begin{tabular}{| l | c | c | c | c | c | c | c |}
 	\hline
@@ -181,7 +187,7 @@ This function should insert the item at the given index from the items array.  T
 	\hline
 \end{tabular}
 \end{center}
-Whiley allows you to do more with less, minimal syntax but more expressive. (IMPORTANT!! flexible language constructs)… Dafny has more complicated syntax to deal with memory management i.e pointers\slash references, lots to remember and coordinate.
+Z3 has no inductive proof mechanism and I suspect this is why Dafny has such a messy inductive definition syntax that I also suspect derives from boogie rather than Z3. Whiley allows you to do more with less, minimal syntax but more expressive. (IMPORTANT!! flexible language constructs)… Dafny has more complicated syntax to deal with memory management i.e pointers\slash references, lots to remember and coordinate.
 The tools Dafny provides are for the development of proofs in a “top-down” manner, and which allow us to concentrate on the “architecture” of the proof. Unlike Frama-C.
 Deduction of bounds of different variables seems to not work in Whiley (not array bounds.)
 TODO: insert(), merge(), binarySearch(), qsort()
@@ -245,5 +251,45 @@ All languages need different forms of verification and to different degrees. Sen
 	When it comes to verifying C code Frama-C seems to be a current industry favourite. But I found the user gtk interface to be cumbersome and confusing. The ACSL language would appear to appeal more to an expert C programmer which I am not. Much expertise is needed to master Frama-C and every aspect and plugin have large manuals and tutorials available, all very heavy in detail. What I really wanted was a more general tool that would help point out where errors in my reasoning were evident. Frama-C offers only the vaguest of clues and errors in my reasoning are not always obvious. The issues of bounded types are dealt with up front and checked with the WP plugin through an RTE (runtime error) option that injects (over\slash under)flow checks. Specifications are meant to be written in a style that complements C and is analogous to C, even mirroring C conventions and C arithmetic. The lack of consolidation makes the various plugins difficult to integrate into a workflow. The ACSL specification language is littered with predefined predicates and detailed set of proof tools such as user defined predicates, behaviours, inductive(recursive) functions and axioms etc. Arrays were a very sticky issue in Frama-C and involve proof of non-null and the validation of the range of indices and elements. For loop invariants, proof of termination is provided by the loop 'variant' key word, which is hard to see in amongst loop 'invariant' clauses in the same comment code block. Also there are assigns clauses that define the frame of modification for both the function and loop invariants (loop assigns.) since unlike other tools Frama-C has no knowledge of what has been modified in the function or inside the loop (side effects). Since the C language does not have formal semantics one should take the verification of C code with a grain of salt, horribly coded nonsense with undefined results can still be verified.
 \subsection{Spec\#}
 	Spec\# having the same underlying workings as Dafny (a.k.a Boogie and Z3) if there are many differences between the two.
-
+\newpage
+\section{Appendix}
+\begin{multicols}{2}
+\lstinputlisting{Whiley/01_palindrome.01.whiley}
+\lstinputlisting{Whiley/02_firstIndexOf.01.whiley}
+\lstinputlisting{Whiley/03_lastIndexOf.01.whiley}
+\columnbreak
+\lstinputlisting{Dafny/01_palindrome.01.dfy}
+\lstinputlisting{Dafny/02_firstIndexOf.01.dfy}
+\lstinputlisting{Dafny/03_lastIndexOf.01.dfy}
+\newpage
+\lstinputlisting{Whiley/04_max.01.whiley}
+\lstinputlisting{Whiley/05_occurences.01.whiley}
+\lstinputlisting{Whiley/06_strlen.01.whiley}
+\columnbreak
+\lstinputlisting{Dafny/04_max.01.dfy}
+\lstinputlisting{Dafny/05_occurences.01.dfy}
+\lstinputlisting{Dafny/06_strlen.01.dfy}
+\newpage
+\lstinputlisting{Whiley/07_linearSearch.01.whiley}
+\lstinputlisting{Whiley/08_binarySearch.01.whiley}
+\lstinputlisting{Whiley/09_append.01.whiley}
+\columnbreak
+\lstinputlisting{Dafny/07_linearSearch.01.dfy}
+\lstinputlisting{Dafny/08_binarySearch.01.dfy}
+\lstinputlisting{Dafny/09_append.01.dfy}
+\newpage
+\lstinputlisting{Whiley/10_remove.01.whiley}
+\lstinputlisting{Whiley/11_copy.01.whiley}
+\columnbreak
+\lstinputlisting{Dafny/10_remove.01.dfy}
+\lstinputlisting{Dafny/11_copy.01.dfy}
+\newpage
+\lstinputlisting{Whiley/12_displace.01.whiley}
+\columnbreak
+\lstinputlisting{Dafny/12_displace.01.dfy}
+\newpage
+\lstinputlisting{Whiley/13_insert.01.whiley}
+\columnbreak
+\lstinputlisting{Dafny/13_insert.01.dfy}
+\end{multicols}
 \end{document}

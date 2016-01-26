@@ -1,7 +1,7 @@
 // Insertion sort
 
 import "12_displace.01.whiley"
-import "07_linearSearch.01.whiley"
+import "07_linearSearch.02.whiley"
 
 function insertSort(int[] arr) -> (int[] r)
   requires |arr| > 0

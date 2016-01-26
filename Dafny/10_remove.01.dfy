@@ -21,7 +21,8 @@ method remove(items: array<int>, index: nat) returns (r: array<int>)
       invariant i <= index
       decreases index - i
       invariant r.Length == newlen
-      invariant forall k: nat :: k < i ==> (k < index ==> r[k] == items[k])
+      invariant forall k: nat :: k < i
+                ==> (k < index ==> r[k] == items[k])
     {
         r[i] := items[i];
         i := i + 1;

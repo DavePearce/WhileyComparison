@@ -16,24 +16,18 @@ method BinarySearch(a: array<int>, key: int) returns (index: int)
 
   while (low < high)
     invariant 0 <= low <= high <= a.Length
-    invariant forall i :: 0 <= i < a.Length && !(low <= i < high) ==> a[i] != key
+    invariant forall i :: 0 <= i < a.Length
+              && !(low <= i < high) ==> a[i] != key
   {
       var mid := (low + high) / 2;
       if (a[mid] < key)
-      {
-          low:= mid + 1;
-      }
+        { low:= mid + 1; }
       else if (key < a[mid])
-      {
-          high := mid;
-      }
+        { high := mid; }
       else
-      {
-          return mid;
-      }     
+        { return mid; }     
   
   }     
-  
   return -1;
 }       
  

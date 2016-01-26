@@ -1,26 +1,24 @@
-// Status: wyc-37: verified [1761ms] ~810.05% improvement
-//         wyc-36: verified [14265ms]
+// Status wyc-37: verifies [49640ms] wyc-36: verifies [76839ms]
 type nat is (int n) where n >= 0
 
-function search(int[] ls, int item) -> (int r)
-  // there is something to search through
-  requires |ls| > 0
-  // ls is an ordered array
-  requires all { k in 0..|ls| - 1 | ls[k] <= ls[k + 1] }
-  // if not found return index is -1
-  ensures r < 0 ==> all { k in 0..|ls| | ls[k] != item }
-  // if found the index is returned
-  ensures r >= 0 ==> ls[r] == item
+function linearSearch(int[] arr, int val, nat len) -> (nat r)
+  requires len < |arr|
+  // arr is an ordered array
+  requires all { j in 0..len, k in 0..len | j < k ==> arr[j] <= arr[k] }
+  // return value should not exceed len
+  ensures r <= len
+  // index of place of insertion is returned
+  ensures all { k in 0..r | arr[k] <  val }
+  ensures all { k in r..len | arr[k] >=  val }
 :
   nat i = 0
-  
-  while i < |ls|
-  where i <= |ls|
-  where all { k in 0..i | ls[k] != item }
+
+  while i < len
+    where i <= len
+    where all { k in 0..i | arr[k] < val }
+    where i < (len - 1) ==> arr[i] <= arr[i + 1]
   :
-    if ls[i] == item
-    :
+    if arr[i] >= val:
       return i
     i = i + 1
-  
-  return -1
+  return i

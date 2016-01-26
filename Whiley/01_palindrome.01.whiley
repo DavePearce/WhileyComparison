@@ -1,7 +1,8 @@
-// Status wyc-37: verified [96203ms] ~(-54.73%)
-//        wyc-36: verified [43551ms]
+// Status wyc-37: verified [96203ms]
+//        wyc-36: verified [43551ms] -54.73 percent.
 function isPalindrome(int[] chars) -> (bool r)
-  ensures r <==> all { x in 0..|chars| | chars[x] == chars[|chars| - (x + 1)] }
+  ensures r <==> all { x in 0..|chars|
+                 | chars[x] == chars[|chars| - (x + 1)] }
 :
   int i = 0
   int j = |chars|

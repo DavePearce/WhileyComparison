@@ -1,5 +1,5 @@
-// Status: verifies and compiles?...no
-//         ( if items[mid] < key:, index out of bounds (negative) )
+// Status: verifies and compiles?...
+//         no, index out of bounds (negative) line 25
 type nat is (int n) where n >= 0
 
 method binarySearch( int[] items, int key ) -> (int r)
@@ -12,25 +12,20 @@ method binarySearch( int[] items, int key ) -> (int r)
   nat low = 0
   nat high = |items|
   nat mid = 0
-
+  //
   while low < high
     where low <= mid
     where mid < high
     where high <= |items|
     // elements outside the search range do not equal key
     where no { i in 0..low, j in high..|items|
-              | items[i] != key && items[j] == key }
+              | items[i] != key && items[j] != key }
   :
     mid = (low + high) / 2
-    
-    if items[mid] < key
-    :
+    if items[mid] < key:
       low = mid + 1
-    else if key < items[mid]
-    :
+    else if key < items[mid]:
       high = mid
-    else
-    :
+    else:
       return mid
-  
   return -1

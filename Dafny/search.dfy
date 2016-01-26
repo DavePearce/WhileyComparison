@@ -1,7 +1,5 @@
 // Status: verifies and compiles
-// A linear search over a sorted array looking for a given element.
 method search(ls: array<int>, item: int) returns (r: int)
-////////////////////////////////////////////////////
   requires ls != null
   // ls is an ordered array
   requires forall k: nat :: 0 <= k < ls.Length - 1 ==> ls[k] <= ls[k + 1] 
@@ -17,7 +15,7 @@ method search(ls: array<int>, item: int) returns (r: int)
       decreases ls.Length - i
       invariant forall k: nat :: k < i ==> ls[k] != item
     {
-      if ls[i] == item
+      if ls[i] >= item
         { return i; }
       i := i + 1;
     }

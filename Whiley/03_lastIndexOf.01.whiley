@@ -1,6 +1,5 @@
-// Status wyc-37: verifies [1048ms] ~(-27.77%)
-//        wyc-36: verifies [1429ms]
-
+// Status wyc-37: verifies [1048ms]
+//        wyc-36: verifies [1429ms] -27.77 percent
 function lastIndexOf(int[] items, int item) -> (int r)
 // If result is positive, element at that position must match item
 ensures r >= 0 ==> items[r] == item

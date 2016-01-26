@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (Web2C 2015) (preloaded format=pdflatex 2015.12.17)  20 JAN 2016 16:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (Web2C 2015) (preloaded format=pdflatex 2015.12.17)  26 JAN 2016 17:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -400,16 +400,65 @@ Package caption Info: listings package is loaded.
 \sf@top=\skip52
 \sf@bottom=\skip53
 )
+(/usr/pkg/share/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2015/03/31 v1.8m multicolumn formatting (FMi)
+\c@tracingmulticols=\count111
+\mult@box=\box28
+\multicol@leftmargin=\dimen140
+\c@unbalance=\count112
+\c@collectmore=\count113
+\doublecol@number=\count114
+\multicoltolerance=\count115
+\multicolpretolerance=\count116
+\full@width=\dimen141
+\page@free=\dimen142
+\premulticols=\dimen143
+\postmulticols=\dimen144
+\multicolsep=\skip54
+\multicolbaselineskip=\skip55
+\partial@page=\box29
+\last@line=\box30
+\maxbalancingoverflow=\dimen145
+\mult@rightbox=\box31
+\mult@grightbox=\box32
+\mult@gfirstbox=\box33
+\mult@firstbox=\box34
+\@tempa=\box35
+\@tempa=\box36
+\@tempa=\box37
+\@tempa=\box38
+\@tempa=\box39
+\@tempa=\box40
+\@tempa=\box41
+\@tempa=\box42
+\@tempa=\box43
+\@tempa=\box44
+\@tempa=\box45
+\@tempa=\box46
+\@tempa=\box47
+\@tempa=\box48
+\@tempa=\box49
+\@tempa=\box50
+\@tempa=\box51
+\c@columnbadness=\count117
+\c@finalcolumnbadness=\count118
+\last@try=\dimen146
+\multicolovershoot=\dimen147
+\multicolundershoot=\dimen148
+\mult@nat@firstbox=\box52
+\colbreak@box=\box53
+\mc@col@check@num=\count119
+)
 (/usr/pkg/share/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
-\fancy@headwidth=\skip54
-\f@ncyO@elh=\skip55
-\f@ncyO@erh=\skip56
-\f@ncyO@olh=\skip57
-\f@ncyO@orh=\skip58
-\f@ncyO@elf=\skip59
-\f@ncyO@erf=\skip60
-\f@ncyO@olf=\skip61
-\f@ncyO@orf=\skip62
+\fancy@headwidth=\skip56
+\f@ncyO@elh=\skip57
+\f@ncyO@erh=\skip58
+\f@ncyO@olh=\skip59
+\f@ncyO@orh=\skip60
+\f@ncyO@elf=\skip61
+\f@ncyO@erf=\skip62
+\f@ncyO@olf=\skip63
+\f@ncyO@orf=\skip64
 )
 (/usr/pkg/share/texmf-dist/tex/latex/sectsty/sectsty.sty
 Package: sectsty 2002/02/25 v2.0.2 Commands to change all sectional heading sty
@@ -425,43 +474,43 @@ Package tocbibind Note: Using section or other style headings.
 ) (/usr/pkg/share/texmf-dist/tex/latex/tocloft/tocloft.sty
 Package: tocloft 2013/05/02 v2.3f parameterised ToC, etc., typesetting
 Package tocloft Info: The document has section divisions on input line 44.
-\cftparskip=\skip63
-\cftbeforetoctitleskip=\skip64
-\cftaftertoctitleskip=\skip65
-\cftbeforepartskip=\skip66
-\cftpartnumwidth=\skip67
-\cftpartindent=\skip68
-\cftbeforesecskip=\skip69
-\cftsecindent=\skip70
-\cftsecnumwidth=\skip71
-\cftbeforesubsecskip=\skip72
-\cftsubsecindent=\skip73
-\cftsubsecnumwidth=\skip74
-\cftbeforesubsubsecskip=\skip75
-\cftsubsubsecindent=\skip76
-\cftsubsubsecnumwidth=\skip77
-\cftbeforeparaskip=\skip78
-\cftparaindent=\skip79
-\cftparanumwidth=\skip80
-\cftbeforesubparaskip=\skip81
-\cftsubparaindent=\skip82
-\cftsubparanumwidth=\skip83
-\cftbeforeloftitleskip=\skip84
-\cftafterloftitleskip=\skip85
-\cftbeforefigskip=\skip86
-\cftfigindent=\skip87
-\cftfignumwidth=\skip88
-\cftbeforelottitleskip=\skip89
-\cftafterlottitleskip=\skip90
-\cftbeforetabskip=\skip91
-\cfttabindent=\skip92
-\cfttabnumwidth=\skip93
-\cftbeforesubfigskip=\skip94
-\cftsubfigindent=\skip95
-\cftsubfignumwidth=\skip96
-\cftbeforesubtabskip=\skip97
-\cftsubtabindent=\skip98
-\cftsubtabnumwidth=\skip99
+\cftparskip=\skip65
+\cftbeforetoctitleskip=\skip66
+\cftaftertoctitleskip=\skip67
+\cftbeforepartskip=\skip68
+\cftpartnumwidth=\skip69
+\cftpartindent=\skip70
+\cftbeforesecskip=\skip71
+\cftsecindent=\skip72
+\cftsecnumwidth=\skip73
+\cftbeforesubsecskip=\skip74
+\cftsubsecindent=\skip75
+\cftsubsecnumwidth=\skip76
+\cftbeforesubsubsecskip=\skip77
+\cftsubsubsecindent=\skip78
+\cftsubsubsecnumwidth=\skip79
+\cftbeforeparaskip=\skip80
+\cftparaindent=\skip81
+\cftparanumwidth=\skip82
+\cftbeforesubparaskip=\skip83
+\cftsubparaindent=\skip84
+\cftsubparanumwidth=\skip85
+\cftbeforeloftitleskip=\skip86
+\cftafterloftitleskip=\skip87
+\cftbeforefigskip=\skip88
+\cftfigindent=\skip89
+\cftfignumwidth=\skip90
+\cftbeforelottitleskip=\skip91
+\cftafterlottitleskip=\skip92
+\cftbeforetabskip=\skip93
+\cfttabindent=\skip94
+\cfttabnumwidth=\skip95
+\cftbeforesubfigskip=\skip96
+\cftsubfigindent=\skip97
+\cftsubfignumwidth=\skip98
+\cftbeforesubtabskip=\skip99
+\cftsubtabindent=\skip100
+\cftsubtabnumwidth=\skip101
 )
 (/usr/pkg/share/texmf-dist/tex/latex/psnfss/pifont.sty
 Package: pifont 2005/04/12 PSNFSS-v9.2a Pi font support (SPQR) 
@@ -507,18 +556,18 @@ File: dvipsnam.def 2014/10/14 v3.0j Driver-dependent file (DPC,SPQR)
 (./WhileyComparison.aux)
 \openout1 = `WhileyComparison.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -556,16 +605,16 @@ LaTeX Font Info:    ... okay on input line 67.
 
 (/usr/pkg/share/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count111
-\scratchdimen=\dimen140
-\scratchbox=\box28
-\nofMPsegments=\count112
-\nofMParguments=\count113
+\scratchcounter=\count120
+\scratchdimen=\dimen149
+\scratchbox=\box54
+\nofMPsegments=\count121
+\nofMParguments=\count122
 \everyMPshowfont=\toks23
-\MPscratchCnt=\count114
-\MPscratchDim=\dimen141
-\MPnumerator=\count115
-\makeMPintoPDFobject=\count116
+\MPscratchCnt=\count123
+\MPscratchDim=\dimen150
+\MPnumerator=\count124
+\makeMPintoPDFobject=\count125
 \everyMPtoPDFconversion=\toks24
 ) (/usr/pkg/share/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
@@ -611,70 +660,94 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\c@lstlisting=\count117
+\c@lstlisting=\count126
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 68.
+(Font)              <12> on input line 69.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 68.
+(Font)              <8> on input line 69.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 68.
+(Font)              <6> on input line 69.
 
 (/usr/pkg/share/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
-)
-(./Whiley/01_palindrome.01.whiley) (./Whiley/02_firstIndexOf.01.whiley [1
+) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}])
-(./Whiley/03_lastIndexOf.01.whiley) (./Whiley/04_max.01.whiley [2])
-(./Whiley/05_occurences.01.whiley) (./Whiley/06_strlen.01.whiley [3])
-(./Whiley/07_linearSearch.01.whiley) (./Whiley/08_binarySearch.01.whiley
-[4]) (./Whiley/09_append.01.whiley) [5] (./Whiley/10_remove.01.whiley)
-(./Whiley/11_copy.01.whiley [6]) (./Whiley/12_displace.01.whiley [7])
-(./Whiley/13_insert.01.whiley [8])
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 166.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 166.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 194.
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 144.
 
 
 (/usr/pkg/share/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 194.
- [9]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 144.
+ [2]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 172.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 172.
+ [3]
 (/usr/pkg/share/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 (/usr/pkg/share/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-) [10] [11] [12]
-(./WhileyComparison.aux) ) 
+) [4] [5] [6]
+(./Whiley/01_palindrome.01.whiley) (./Whiley/02_firstIndexOf.01.whiley)
+(./Whiley/03_lastIndexOf.01.whiley) (./Dafny/01_palindrome.01.dfy)
+(./Dafny/02_firstIndexOf.01.dfy) (./Dafny/03_lastIndexOf.01.dfy) [7]
+(./Whiley/04_max.01.whiley) (./Whiley/05_occurences.01.whiley)
+(./Whiley/06_strlen.01.whiley) (./Dafny/04_max.01.dfy)
+(./Dafny/05_occurences.01.dfy
+Overfull \hbox (6.66428pt too wide) in paragraph at lines 14--15
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][] 
+ []
+
+
+Overfull \hbox (9.32056pt too wide) in paragraph at lines 16--17
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][] 
+ []
+
+) (./Dafny/06_strlen.01.dfy) [8] (./Whiley/07_linearSearch.01.whiley)
+(./Whiley/08_binarySearch.01.whiley) (./Whiley/09_append.01.whiley)
+(./Dafny/07_linearSearch.01.dfy) (./Dafny/08_binarySearch.01.dfy)
+(./Dafny/09_append.01.dfy) [9] (./Whiley/10_remove.01.whiley)
+(./Whiley/11_copy.01.whiley) (./Dafny/10_remove.01.dfy) (./Dafny/11_copy.01.dfy
+) [10] (./Whiley/12_displace.01.whiley) (./Dafny/12_displace.01.dfy) [11]
+(./Whiley/13_insert.01.whiley) (./Dafny/13_insert.01.dfy
+Overfull \hbox (9.32056pt too wide) in paragraph at lines 21--22
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][] 
+ []
+
+) [12] (./WhileyComparison.aux) ) 
 Here is how much of TeX's memory you used:
- 6696 strings out of 493889
- 95096 string characters out of 6158402
- 218870 words of memory out of 5000000
- 9846 multiletter control sequences out of 15000+600000
- 10730 words of font info for 38 fonts, out of 8000000 for 9000
+ 6907 strings out of 493889
+ 98203 string characters out of 6158402
+ 335173 words of memory out of 5000000
+ 10025 multiletter control sequences out of 15000+600000
+ 10898 words of font info for 39 fonts, out of 8000000 for 9000
  774 hyphenation exceptions out of 8191
- 44i,12n,49p,1946b,1697s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/pkg/share/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmbx10.pfb></usr/pkg/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9
-.pfb></usr/pkg/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
-pkg/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/pkg/share/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/pkg/share/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmr5.pfb></usr/pkg/share/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmss12.pfb></usr/pkg/share/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmsy10.pfb></usr/pkg/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-tt8.pfb></usr/pkg/share/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on WhileyComparison.pdf (12 pages, 149656 bytes).
+ 44i,11n,49p,1946b,1180s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/pkg/share/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmbx10.pfb></usr/pkg/share/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmbx9.pfb></usr/pkg/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.p
+fb></usr/pkg/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/pk
+g/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/pkg/share/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/pkg/share/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmr5.pfb></usr/pkg/share/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmss12.pfb></usr/pkg/share/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmsy10.pfb></usr/pkg/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt
+8.pfb></usr/pkg/share/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
+Output written on WhileyComparison.pdf (12 pages, 173192 bytes).
 PDF statistics:
- 83 PDF objects out of 1000 (max. 8388607)
- 58 compressed objects within 1 object stream
+ 87 PDF objects out of 1000 (max. 8388607)
+ 61 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

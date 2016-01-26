@@ -4,10 +4,10 @@ predicate rotated(arr1:seq<int>, arr2:seq<int>)
   requires |arr1| == |arr2|
 {
   (foldall i :: 1 <= i < |arr1| ==> arr2[i] == arr1[i - 1]) &&
-  (|arr1| > 0 ==> arr2[0] == arr1[ |arr1| - 1 ])
+  ( |arr1| > 0 ==> arr2[0] == arr1[ |arr1| - 1 ] )
 }
-
-method displace(arr: array<int>, start: nat, len: nat) returns (r: array<int>)
+method displace(arr: array<int>, start: nat, len: nat)
+  returns (r: array<int>)
   requires arr != null
   requires len > 0
   requires start + len <= arr.Length
@@ -25,11 +25,8 @@ method displace(arr: array<int>, start: nat, len: nat) returns (r: array<int>)
     r[i] := arr[i];
     i := i + 1;
   }
-  
   assert arr[..start] == r[..start];
-
   r[start] := arr[start+len-1];
-  
   assert r[start] == arr[start+len-1];
   
   i := start+1;
@@ -42,7 +39,6 @@ method displace(arr: array<int>, start: nat, len: nat) returns (r: array<int>)
     r[i] := arr[i-1];
     i := i + 1;
   }
-  
   assert rotated(arr[start .. start+len], r[start .. start+len]);
   
   i := start+len;

@@ -1,27 +1,25 @@
-// Status wdk-37:
-//        wdk-36:
+// Status: wyc-37: verified [1761ms] wyc-36: verified [14265ms] ~810.05 percent
 type nat is (int n) where n >= 0
 
 function search(int[] ls, int item) -> (int r)
+  // there is something to search through
   requires |ls| > 0
   // ls is an ordered array
-  requires all { k in 1..|ls| - 1 | ls[k] <= ls[k + 1] && ls[k] >= ls[k - 1] }
+  requires all { k in 0..|ls| - 1 | ls[k] <= ls[k + 1] }
   // if not found return index is -1
   ensures r < 0 ==> all { k in 0..|ls| | ls[k] != item }
   // if found the index is returned
-  ensures r >= 0 ==> some { k in 0..|ls| | ls[k] == item }
+  ensures r >= 0 ==> ls[r] == item
 :
-  int i = |ls|
-  int res = -1
-  
-  while i > 0
-    where 0 <= i where i <= |ls|
-    where -1 <= res where res < |ls|
-    where res >= 0 ==> some { k in i..|ls| | ls[k] == item }
-    where res < 0 ==> no { k in i..|ls| | ls[k] == item }
+  nat i = 0
+
+  while i < |ls|
+    where i <= |ls|
+    where all { k in 0..i | ls[k] != item }
   :
-    i = i - 1
-    if ls[i] == item:
-      res = i
-  
-  return res
+    if ls[i] == item
+    :
+      return i
+    i = i + 1
+    
+  return -1

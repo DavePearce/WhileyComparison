@@ -1,14 +1,11 @@
-// Status: wyc-37: verified and compiled [1197ms] ~(-7.76)
-//         wyc-36: verified and compiled [1104ms]
+// Status: verified and compiled
+//         wyc-37: [1197ms] wyc-36: [1104ms] -7.76
 constant NULL is 0
-
 // ASCII character is unsigned 8bit integer
 type ASCII_char is (int n) where n >= 0 && n < 256
-
 // C String is array of chars where at least one is NULL
 type C_string is (ASCII_char[] chars)
      where some { i in 0..|chars| | chars[i] == NULL }
-
 // Calculate length of string
 function strlen(C_string str) -> (int r)
   ensures r >= 0

@@ -1,27 +1,26 @@
-// Status wyc-37: verifies [49640ms]
-//        wyc-36: verifies [76839ms]
-type nat is (int n) where n >= 0
-
-function linearSearch(int[] arr, int val, nat len) -> (nat r)
-  requires len < |arr|
+// Status wyc-37: verifies [3519ms] wyc-36: verifies [9570ms]
+function linearSearch(int[] arr, int val) -> (int r)
   // arr is an ordered array
-  requires all { k in 0..len - 1 | j < k ==> arr[j] <= arr[k] }
-  // return value should not exceed len
-  ensures r <= len
-  // index of place of insertion is returned
-  ensures all { k in 0..r | arr[k] <  val }
-  ensures all { k in r..len | arr[k] >=  val }
-:
-  nat i = 0
-  
-  while i < len
-    where i <= len
-    where all { k in 0..i | arr[k] < val }
-    where i < (len - 1) ==> arr[i] <= arr[i + 1]
-  :
-    if arr[i] >= val
-    :
+  requires all { i in 0..|arr|, j in 0..|arr|
+               | i < j ==> arr[i] < arr[j] }
+  // Return is between -1 and length of arr
+  ensures r >= -1 && r < |arr|
+  // If index returned, it is first match
+  ensures r >= 0 ==> all { k in 0..r | arr[k] < val }
+  // If index return, it matches val
+  ensures r >= 0 ==> arr[r] == val
+  // if failure, no matching element exists
+  ensures r == -1 ==> no { k in 0..|arr| | arr[k] == val }:
+//
+  int i = 0
+  //
+  while i < |arr|
+    where i >= 0 && i <= |arr|
+    where all { k in 0..i | arr[k] < val }:
+  //
+    if arr[i] == val:
       return i
+    else if arr[i] > val:
+      return -1
     i = i + 1
-  
-  return i
+  return -1

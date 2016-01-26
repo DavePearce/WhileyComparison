@@ -1,7 +1,6 @@
 // Status: verifies and compiles
-// Copies a region of array src and overwrites the same sized region of array
-// dest.
-method copy( src: array<int>, sStart: nat, dest: array<int>, dStart: nat, len: nat)
+method copy( src: array<int>, sStart: nat
+     , dest: array<int>, dStart: nat, len: nat)
     returns (r: array<int>)
   // both arrays cannot be null
   requires dest != null && src != null;
@@ -17,7 +16,8 @@ method copy( src: array<int>, sStart: nat, dest: array<int>, dStart: nat, len: n
   // All elements above copied region are same
   ensures r[dStart + len..] == dest[dStart + len..];
   // All elements in copied region match src
-  ensures forall k: nat :: k < len ==> r[dStart + k] == src[sStart + k];
+  ensures forall k: nat :: k < len
+          ==> r[dStart + k] == src[sStart + k];
   
 {
     if len == 0 { return dest; }
@@ -38,10 +38,6 @@ method copy( src: array<int>, sStart: nat, dest: array<int>, dStart: nat, len: n
       invariant r[..dStart] == dest[..dStart]
       invariant r[dStart..dStart + i] == src[sStart..sStart + i]
       invariant r[dStart + len..] == dest[dStart + len..]
-// Dafny can't verify the following
-//      invariant forall k: nat :: k < i ==> r[dStart + k] == src[sStart + k]
-// even though the above line:
-//      r[dStart..dStart + i] == src[sStart..sStart + i] should prove the same cases
     {
         r[dStart + i] := src[sStart + i];
         i := i + 1;

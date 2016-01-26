@@ -1,14 +1,7 @@
-// Status wyc-37: null pointer exception.
-//        wyc-36: loop invariant not restored
-//                where all { k in 0..dStart | dest[k] == odest[k] }
-import whiley.lang.System
-
-method main(System.Console console):
-    int[] src = [1,2,3,4,5]
-    int[] res = copy( src, 2, [3,4,5,6,7], 1, 3 )
-    console.out.println(res)
-
-function copy(int[] src, int sStart, int[] dest, int dStart, int len) -> (int[] r)
+// Status wyc-37: null pointer.
+//        wyc-36: loop inv. not restored: line 33
+function copy(int[] src, int sStart, int[] dest, int dStart, int len)
+          -> (int[] r)
   // starting points in both arrays cannot be negative
   requires sStart >= 0 && dStart >= 0 && len > 0
   // Source array must contain enough elements to be copied
@@ -27,10 +20,11 @@ function copy(int[] src, int sStart, int[] dest, int dStart, int len) -> (int[] 
   int i = 0
   int[] odest = dest
   assert all { k in 0..|dest| | dest[k] == odest[k] }
-  
+  //
   while i < len
     where 0 <= i where i <= len
-    where |dest| == |odest| // all items are still the same before dStart index
+    where |dest| == |odest|
+    // all items are still the same before dStart index
     where all { k in 0..dStart | dest[k] == odest[k] }
     // all items after dStart index are still the same
     where all { k in (dStart + len)..|dest| | dest[k] == odest[k] }
@@ -40,5 +34,4 @@ function copy(int[] src, int sStart, int[] dest, int dStart, int len) -> (int[] 
   :
     dest[dStart + i] = src[sStart + i]
     i = i + 1
-  
   return dest 

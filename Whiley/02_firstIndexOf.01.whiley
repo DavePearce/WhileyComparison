@@ -1,10 +1,9 @@
-// Status wyc-37: verifies
-//        wyc-36: verifies
+// Status wyc-37: verifies wyc-36: verifies
 function firstIndexOf(int[] items, int item) -> (int r)
   // If result is positive, element at that position must match item
   ensures r >= 0 ==> items[r] == item
   // If result is positive, no element at lesser position matches item
-  ensures r >= 0 ==> all { k in 0..r | items[k] != item }
+  ensures r >= 0 ==> no { k in 0..r | items[k] == item }
   // If result is negative, no element matches item
   ensures r <  0 ==> no  { k in 0..|items| | items[k] == item }
 :

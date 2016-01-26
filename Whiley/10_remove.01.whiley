@@ -1,6 +1,4 @@
-// Status wyc-37: infinite loop
-//        wyc-36: verifier "GC overhead limit exceeded"
-
+// Status wyc-37: infinite loop wyc-36: "GC overhead limit exceeded"
 function remove(int[] items, int index) -> (int[] r)
   requires 0 <= index && index < |items|
   requires |items| > 0
@@ -11,7 +9,7 @@ function remove(int[] items, int index) -> (int[] r)
   int newlen = |items| - 1
   int i = 0
   int[] result = [ 0; newlen ]
-
+  //
   while i < index
     // items before index in result are still the same
     where 0 <= i where i <= index
@@ -20,9 +18,7 @@ function remove(int[] items, int index) -> (int[] r)
   :
     result[i] = items[i]
     i = i + 1
-  
   assert i == index
-  
   while i < newlen
     // items after index in result are transposed by one place
     where index <= i where i <= newlen
@@ -32,5 +28,4 @@ function remove(int[] items, int index) -> (int[] r)
   :
     result[i] = items[i + 1]
     i = i + 1
-  
   return result
