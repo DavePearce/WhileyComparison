@@ -1,0 +1,22 @@
+// Status: ???
+public static bool isPalindrome(int[]! chars)
+  ensures r <==> forall { int x in (0: chars.Length);
+                 chars[x] == chars[chars.Length - (x + 1)] };
+{
+  int i = 0;
+  int j = chars.Length;
+  //
+  while (i < j)
+    invariant i + j == chars.Length && i >= 0;
+    invariant forall { int k in (0: i);
+              chars[k] == chars[chars.Length - (k + 1)] };
+  {
+    --j;
+    if ( chars[i] != chars[j] )
+    {
+      return false;
+    }
+    ++i;
+  }
+  return true;
+}

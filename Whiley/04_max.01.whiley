@@ -1,6 +1,7 @@
 // Status wyc-37: verifies. wyc-36: verifies.
 public function maxArray(int[] items) -> (int max)
   requires |items| > 0
+  ensures some { k in 0..|items| | max == items[k] }
   ensures all { k in 0..|items| | max >= items[k] }
 :
   int i = 1
@@ -8,6 +9,7 @@ public function maxArray(int[] items) -> (int max)
   
   while i < |items|
     where 0 < i && i <= |items|
+    where some { k in 0..i | r == items[k] }
     where all { k in 0..i | r >= items[k] }
   :
     if items[i] > r:

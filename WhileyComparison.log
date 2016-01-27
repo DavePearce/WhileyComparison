@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (Web2C 2015) (preloaded format=pdflatex 2015.12.17)  26 JAN 2016 17:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (Web2C 2015) (preloaded format=pdflatex 2015.12.17)  27 JAN 2016 16:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -673,22 +673,22 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 (/usr/pkg/share/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
-) [1
+)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 129.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 129.
+ [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 144.
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 162.
 
 
 (/usr/pkg/share/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 144.
- [2]
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 172.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 172.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 162.
  [3]
 (/usr/pkg/share/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
@@ -729,25 +729,27 @@ Overfull \hbox (9.32056pt too wide) in paragraph at lines 21--22
 Here is how much of TeX's memory you used:
  6907 strings out of 493889
  98203 string characters out of 6158402
- 335173 words of memory out of 5000000
+ 335767 words of memory out of 5000000
  10025 multiletter control sequences out of 15000+600000
  10898 words of font info for 39 fonts, out of 8000000 for 9000
  774 hyphenation exceptions out of 8191
- 44i,11n,49p,1946b,1180s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,12n,49p,1946b,1769s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/pkg/share/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmbx10.pfb></usr/pkg/share/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmbx9.pfb></usr/pkg/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.p
-fb></usr/pkg/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/pk
-g/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/pkg/share/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/pkg/share/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmr5.pfb></usr/pkg/share/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmss12.pfb></usr/pkg/share/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmsy10.pfb></usr/pkg/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt
-8.pfb></usr/pkg/share/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on WhileyComparison.pdf (12 pages, 173192 bytes).
+fb></usr/pkg/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/p
+kg/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/pkg/share/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/pkg/share/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmr17.pfb></usr/pkg/share/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr5.pfb></usr/pkg/share/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmss12.pfb></usr/pkg/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+10.pfb></usr/pkg/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></u
+sr/pkg/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/pkg/shar
+e/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
+Output written on WhileyComparison.pdf (12 pages, 194359 bytes).
 PDF statistics:
- 87 PDF objects out of 1000 (max. 8388607)
- 61 compressed objects within 1 object stream
+ 95 PDF objects out of 1000 (max. 8388607)
+ 67 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -118,15 +118,33 @@
 \end{abstract}
 
 \section{Introduction}
-From an undergraduate perspective one might approach verification with optimistic positivity, ``I can go about proving all of the programs I've contributed to, all of the weird algorithms I've always wondered about'' etc. However the truth of Software Verification is in actuality much more of a field of research with very limited tools and steep learning curve. Current efforts are impressive from an academic point of view and require years of invested effort to learn the various analyses and how these pieces fit together to prove correctness of program execution.
+From an undergraduate perspective one might approach verification with optimistic positivity, ``I can go about proving all of the programs I've contributed to, all of the weird algorithms I've always wondered about...'' However the truth of Software Verification is in actuality much more of a field of research with very limited tools and a steep learning curve. Current efforts are impressive from an academic point of view and but require years of invested effort to learn the various analyses and how these fit together to prove correctness of program execution.
 
-There are some interesting tools that have developed recently, making for an easier more tractable learning curve and easing the burden of proof for the programmers whom are a bit intimidated by formal specification or those who found other tools too much effort for meagre results. 
+There are some interesting tools that have been developed recently, making for an easier more tractable learning curve and easing the burden of proof for the programmers whom may be a bit intimidated by formal specification or those who found other tools too much effort for meagre results.
+
+As programmers we need some tools to assure us that, the code we work so long and hard on, does what we think it does. There are linter's, Unit testing, Static Analysis tools, all of which will give you some idea about some aspect of code execution but Formal Verification promises to cover much greater ground with relative ease. First Order Logic is expressed alongside code to describe program execution which is then converted into verification conditions to be checked and asserted by an automated proof assistant. It is possible to completely or partially specify a program depending on critical importance correctness and impact of failure.
+
+Formal Logic is at first difficult to grasp for the majority of programmers and even the tools discussed here in require some background in Mathematical Logic, proof by contradiction, contrapositive and induction etc. Induction seems to be a tricky one not only for human beings but for automated deduction also, for instance, Z3 doesn't support induction (recursive) verification conditions, though there are structures available in Dafny for inductive proof, lemmas, functions, predicates (possibly in boogie?) One interesting thin that caught me out was the order of statements in the specification was important which I thought unusual as one would tend to think of certain  mathematical operations as commutative or associative and mathematical definitions as being declarative. But it would seem that logical operations in specifications employ short circuit logic which makes order of premises important.
+
+More often than not code made for one tool is easily transcribed to the other as long as there is a one to one mapping of structures used in formal verification of the program. The difference in range notation between the different tools is note worthy as in Dafny ranges can simply be seen mathematically \verb/0 <= x < length/, where as Whiley is \verb/x in 0..length/ and Spec\# \verb/x in (0:length)/ or \verb/x in (0..length - 1)/. In Whiley the \verb/a..b/ means mathematically $[a,b)$. In Spec\# \verb/(a:b)/ means  $[a,b)$ but \verb/(a..b)/ means $[a,b]$. I personally prefer Dafny's way for it's clarity though the others are short and concise, but this is a matter of taste. Potentially confusing off by one errors can be hard to see.
+
+Intuitively one has to establish a correspondence between any of the variables that change in the loop(s) of the program. Knowing if there has been enough specification or even a complete specification is not immediate and it is easy to come up with only a partial specification. Hence, it raises two main questions: how to be sure that our specification is complete, and how complete must a specification be. For the first question, one must reason on some model of the specified program. For the second question, no definitive answer is known. It depends on the context in which the specification is written and the kind of properties that must be established. The amount of specification required for a given function is very different when verifying a given property for a given application in which calls to the function always occur in a well-defined context and when specifying it as a library function which should be callable in as many contexts as possible.
+
+Overflow, correspondence between bounded and unbounded types inside a specification...
+
+Termination...
+
+Null and non-null types...
+
+Simplification and it's effects time taken to verify and translation into more/less verification conditions.
+
+Embedded code in specifications... lemmas, Pure Functions, Predicates...
 
 \section{Benchmarks}
-Selected benchmarks were intended to be simple since the verification of large blocks of code are exponentially asymptotic in logical deduction and\slash or not decidable in the worst case. The benchmarks range from simple to reasonably complex. Some of them were exercises recommended by David Pierce, where as others were suggested by Lindsey Grooves. To begin with, the main Idea of this project was to create some small programs for use in lecture slides or as examples in tutorials. 
+Selected benchmarks were intended to be simple since the verification of large blocks of code are exponentially asymptotic in logical deduction and\slash or not decidable in the worst case. The benchmarks range from simple to reasonably complex. Some of them were exercises recommended by David Pearce, where as others were suggested by Lindsey Grooves. To begin with, the main Idea of this project was to create some small programs for use in lecture slides or as examples in tutorials. 
 
 \subsection{palindrome} 
-Scans through an array from the outer elements inwards to the centre, searching for a mismatch in characters in which case returning false if there is such a mismatch and returning true if there is no such mismatch.
+Scans through an array from the outer elements inwards to the centre, searching for a mismatch in values in which case returning false if there is such a mismatch and returning true if there is no such mismatch.
 
 \subsection{firstIndexOf}
 Finds the first index where the specified element is found in the given array of integers, searching through the array from the zero index in the positive direction. returns immediately the item is found, otherwise traverses the entire array then returns -1 to represent the absence of the value in the array.
@@ -138,13 +156,13 @@ Finds the last index where the specified element is found in the given array of 
 Searches the entire list in order to find and return the largest integer found. Accumulating the maximum value evaluated so far, as the algorithm traverses the array. 
 
 \subsection{occurences}
-Returns the number of duplicate elements that hold a given value in the given array. Accumulating a count of elements in the array matching the given value. The proof requires counting which is an interesting conundrum.
+Returns the number of times a given value is encountered while traversing the array.
 
 \subsection{strlen}
 The \textbf{strlen} function is intended to mirror the C function of the same name. It counts the number of characters in a string (array) of characters, having come to the end of the list when encountering a null character. The null character is usually denoted as '\textbackslash0', but since there is no char type currently available in Whiley, instead we have to use an abstraction of this data type. Ascii characters are bytes (8 bits) their range of values is between 0 and 255 inclusive and the null character is 0.
 
 \subsection{linearSearch}
-Much like the firstIndexOf function but iterates through a sorted list and can therefore quit early when the element matching the value is either found or the value is exceeded by the current element. Previous versions returned the index in the given array where the first occurrence of an element matching the given value would be inserted. Or to find an insertion point into the sorted part of the array where the value, upon insertion into that part of the array and maintain sorted order.
+Much like the firstIndexOf function but iterates through a sorted list and can therefore quit early when the element matching the value is either found or the value is exceeded by the current element. Previous versions found an index of insertion into the sorted part of the array.
 
 \subsection{binarySearch}
 Using the divide and conquer method to find the index of an element in the given array matching the given value.
@@ -187,12 +205,19 @@ This function should insert the item at the given index from the items array.  T
 	\hline
 \end{tabular}
 \end{center}
-Z3 has no inductive proof mechanism and I suspect this is why Dafny has such a messy inductive definition syntax that I also suspect derives from boogie rather than Z3. Whiley allows you to do more with less, minimal syntax but more expressive. (IMPORTANT!! flexible language constructs)… Dafny has more complicated syntax to deal with memory management i.e pointers\slash references, lots to remember and coordinate.
+the loop invariants tended to be reflected in the postconditions.
+
+Z3 has no inductive proof mechanism and I suspect this is why Dafny has such a messy inductive definition syntax that I also suspect derives from boogie rather than Z3.
+
+Whiley allows you to do more with less, minimal syntax but more expressive. (IMPORTANT!! flexible language constructs)… 
+
+Dafny has more complicated syntax to deal with memory management i.e pointers\slash references, lots to remember and coordinate.
+
 The tools Dafny provides are for the development of proofs in a “top-down” manner, and which allow us to concentrate on the “architecture” of the proof. Unlike Frama-C.
-Deduction of bounds of different variables seems to not work in Whiley (not array bounds.)
-TODO: insert(), merge(), binarySearch(), qsort()
-The semantics of logic expressions in ACSL (Frama-C), Whiley and Dafny are based on mathematical first-order logic.
+
 With Frama-C in particular, it is a 2-valued logic with only total functions. Consequently, expressions are never “undefined”. Having only total functions implies that one can write terms such as 1\slash 0, or *p when p is null.
+
+
 Specifications in Frama-C can have implicit casts between C-types and Mathematical types (something to watch out for.)
 Weird:
 
@@ -202,8 +227,6 @@ Weird:
 \item 5\slash (-3) is -1 and 5 \% (-3) is 2;
 \item (-5)\slash (-3) is 1 and (-5) \% (-3) is -2.
 \end{itemize}
-
-Frama-C Degree of Completeness The previous section has taught us that writing a fairly complete specification (in fact we could still add some clauses to the specification above, as we will see in the next chapters) is not immediate, and thus that it is easy to come up with only a partial specification. Hence, it raises two frequently asked questions: how can we be sure that our specification is complete, and how complete must a specification be. The answers however do not lie in ACSL itself. For the first one, one must reason on some model of the specified application. For the second one, there is no definite answer. It depends on the context in which the specification is written and the kind of properties that must be established: the amount of specification required for a given function is very different when verifying a given property for a given application in which calls to the function always occur in a well-defined context and when specifying it as a library function which should be callable in as many contexts as possible.
 
 Frama-C When no 'assigns' clauses are specified, the function is allowed to modify every visible variable.
 \begin{description}
