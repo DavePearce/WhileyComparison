@@ -1,37 +1,34 @@
 // Insertion sort
 
-include "displace.dfy"
-include "find.dfy"
+include "displace.dfy" // wrong
+include "find.dfy" // wrong
 
-method insertSort(arr: array<int>) returns (r: array<int>)
-  requires arr != null
-  ensures r != null
-  ensures arr.Length == r.Length
-  ensures sorted( r[..] )
+method insertSort(int[]! arr)
+  ensures arr.Length == result.Length
+  ensures forall { j in (0:arr.Length), k in (j:arr.Length); result[j] <= result[k] };
 {
-    var i: nat := 0;
-    var pos: nat := 0;
-    r := new int[arr.Length];
-    
-    while (i < r.Length)
-      invariant i <= r.Length
-      invariant forall k: nat :: k < i ==> r[k] == arr[k]
-    {
-        r[i] := arr[i];
-        i := i + 1;
-    }
-    assert r[..] == arr[..];
-    i := 0;
-    while (i < r.Length)
-      //...
-      //invariant r != null
-      //decreases r.Length - i
-      invariant i <= r.Length
-      invariant arr.Length == r.Length
-      invariant sorted( r[..i] )
-    {
-        pos := findIns(r, r[i], i);
-        i := i + 1;
-        r := displace(r, pos, i - pos);
-    }
+  int i = 0;
+  int pos = 0;
+  int[] r = new int[arr.Length];
+  
+  while (i < r.Length)
+    invariant i <= r.Length;
+    invariant forall { k in (0:i) ; r[k] == arr[k] };
+  {
+    r[i] = arr[i];
+    i = i + 1;
+  }
+  
+  assert forall { k in (0:r.Length) ; r[k] == arr[k] };
+  i = 0;
+  
+  while (i < r.Length)
+    invariant i <= r.Length;
+    invariant arr.Length == r.Length;
+    invariant requires forall{ j in (0:i), k in (j:i); arr[j] <= arr[k] };
+  {
+    pos = findIns(r, r[i], i);
+    ++i;
+    r = displace(r, pos, i - pos);
+  }
 }

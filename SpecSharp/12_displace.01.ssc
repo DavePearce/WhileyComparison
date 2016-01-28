@@ -1,54 +1,49 @@
-// Status: verifies and compiles
+// Status: not verified
 // rotates a region of the array by one place forward
-predicate rotated(arr1:seq<int>, arr2:seq<int>) 
-  requires |arr1| == |arr2|
-{
-  (foldall i :: 1 <= i < |arr1| ==> arr2[i] == arr1[i - 1]) &&
-  ( |arr1| > 0 ==> arr2[0] == arr1[ |arr1| - 1 ] )
-}
-method displace(arr: array<int>, start: nat, len: nat)
-  returns (r: array<int>)
-  requires arr != null
-  requires len > 0
-  requires start + len <= arr.Length
-  ensures r != null && r.Length == arr.Length
-  ensures arr[..start] == r[..start]
-  ensures arr[(start + len)..] == r[(start + len)..]
-  ensures rotated(arr[start .. start+len], r[start .. start+len])
-{
-  var i: nat := 0;
-  r := new int[arr.Length];
-  while i < start
-    invariant i <= start
-    invariant forall k: nat :: k < i ==> r[k] == arr[k]
+class Example {
+  public int[] displace( int[]! arr, int start, int len)
+  requires len > 0 && start > 0;
+  requires start + len <= arr.Length;
+  ensures forall { k in (0:start); arr[k] == result[k] };
+  ensures forall { k in ((start + len):arr.Length); arr[k] == result[k] };
+  ensures result[start] == arr[start + len - 1];
+  ensures forall { k in (start:(start + len - 1)); result[k + 1] == arr[k] };
   {
-    r[i] := arr[i];
-    i := i + 1;
-  }
-  assert arr[..start] == r[..start];
-  r[start] := arr[start+len-1];
-  assert r[start] == arr[start+len-1];
-  
-  i := start+1;
-  while i < start+len
-    invariant start < i <= start+len
-    invariant arr[..start] == r[..start]
-    invariant r[start] == arr[start+len-1]
-    invariant forall k: nat :: start < k < i ==> r[k] == arr[k-1]
-  {
-    r[i] := arr[i-1];
-    i := i + 1;
-  }
-  assert rotated(arr[start .. start+len], r[start .. start+len]);
-  
-  i := start+len;
-  while i < arr.Length
-    invariant start+len <= i <= arr.Length
-    invariant arr[..start] == r[..start]
-    invariant rotated(arr[start .. start+len], r[start .. start+len])
-    invariant forall k: nat :: start+len <= k < i ==> r[k] == arr[k]
-  {
-    r[i] := arr[i];
-    i := i + 1;
+    int i = 0;
+    int[]! r = new int[arr.Length];
+    while (i < start)
+      invariant 0 <= i && i <= start;
+    invariant forall { k in (0:i); r[k] == arr[k] };
+    {
+      r[i] = arr[i];
+      ++i;
+    }
+    assert forall { k in (0:start); arr[k] == r[k] };
+    r[start] = arr[start+len-1];
+    assert r[start] == arr[start+len-1];
+    
+    i = start+1;
+    while (i < start + len)
+      invariant start < i && i <= start+len;
+    invariant forall { k in (0:start); arr[k] == r[k] };
+    invariant r[start] == arr[start+len-1];
+    invariant forall { k in (start:(i - 1)); r[k + 1] == arr[k] };
+    {
+      r[i] = arr[i - 1];
+      ++i;
+    }
+    assert forall { k in (start:(start + len - 1)); r[k + 1] == arr[k] };
+    
+    i = start+len;
+    while (i < arr.Length)
+      invariant start+len <= i && i <= arr.Length;
+    invariant forall { k in (0:start); arr[k] == r[k] };
+    invariant forall { k in (start:(start + len - 1)); r[k + 1] == arr[k] };
+    invariant forall { k in (start+len:i); r[k] == arr[k] };
+    {
+      r[i] = arr[i];
+      ++i;
+    }
+    return r;
   }
 }

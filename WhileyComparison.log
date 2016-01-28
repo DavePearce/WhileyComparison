@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (Web2C 2015) (preloaded format=pdflatex 2015.12.17)  27 JAN 2016 16:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (Web2C 2015) (preloaded format=pdflatex 2015.12.17)  28 JAN 2016 10:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -681,21 +681,21 @@ LaTeX Font Info:    External font `cmex10' loaded for size
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 162.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 164.
 
 
 (/usr/pkg/share/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 162.
- [3]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 164.
+ [3] [4]
 (/usr/pkg/share/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 (/usr/pkg/share/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-) [4] [5] [6]
+) [5] [6]
 (./Whiley/01_palindrome.01.whiley) (./Whiley/02_firstIndexOf.01.whiley)
 (./Whiley/03_lastIndexOf.01.whiley) (./Dafny/01_palindrome.01.dfy)
 (./Dafny/02_firstIndexOf.01.dfy) (./Dafny/03_lastIndexOf.01.dfy) [7]
@@ -729,11 +729,11 @@ Overfull \hbox (9.32056pt too wide) in paragraph at lines 21--22
 Here is how much of TeX's memory you used:
  6907 strings out of 493889
  98203 string characters out of 6158402
- 335767 words of memory out of 5000000
+ 334200 words of memory out of 5000000
  10025 multiletter control sequences out of 15000+600000
  10898 words of font info for 39 fonts, out of 8000000 for 9000
  774 hyphenation exceptions out of 8191
- 44i,12n,49p,1946b,1769s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,11n,49p,1946b,1180s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/pkg/share/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmbx10.pfb></usr/pkg/share/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmbx9.pfb></usr/pkg/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.p
@@ -746,7 +746,7 @@ ts/cm/cmss12.pfb></usr/pkg/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
 10.pfb></usr/pkg/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></u
 sr/pkg/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/pkg/shar
 e/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on WhileyComparison.pdf (12 pages, 194359 bytes).
+Output written on WhileyComparison.pdf (12 pages, 195076 bytes).
 PDF statistics:
  95 PDF objects out of 1000 (max. 8388607)
  67 compressed objects within 1 object stream

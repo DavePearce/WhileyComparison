@@ -1,15 +1,16 @@
 // Status: verifies and compiles
 // Calculate length of string
-method strlen(str: array<char>) returns (r: nat)
-  requires str != null
-  requires exists k: nat :: k < str.Length && str[k] == '\u0000' 
-{
-  r := 0;
-  while str[r] != '\u0000'
-    invariant r <= str.Length
-    invariant forall k: nat :: k < r ==> str[k] != '\u0000'
-    decreases str.Length - r
+class Example {
+  public int strlen(char[]! str)
+  requires exists { k in (0:str.Length); str[k] == '\0' }; 
   {
-      r := r + 1;
+    int i = 0;
+    while (str[i] != '\0')
+      invariant 0 <= i && i <= str.Length;
+    invariant forall { k in (0:i); str[k] != '\0' };
+    {
+      ++i;
+    }
+    return i;
   }
 }

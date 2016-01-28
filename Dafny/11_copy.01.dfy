@@ -20,26 +20,26 @@ method copy( src: array<int>, sStart: nat
           ==> r[dStart + k] == src[sStart + k];
   
 {
-    if len == 0 { return dest; }
-    var i: nat := 0;
-    r := new int[dest.Length];
+  if len == 0 { return dest; }
+  var i: nat := 0;
+  r := new int[dest.Length];
 
-    while (i < r.Length)
-      invariant i <= r.Length
-      invariant forall k: nat :: k < i ==> r[k] == dest[k]
-    {
-        r[i] := dest[i];
-        i := i + 1;
-    }
-    assert r[..] == dest[..];
-    i := 0;
-    while (i < len)
-      invariant i <= len
-      invariant r[..dStart] == dest[..dStart]
-      invariant r[dStart..dStart + i] == src[sStart..sStart + i]
-      invariant r[dStart + len..] == dest[dStart + len..]
-    {
-        r[dStart + i] := src[sStart + i];
-        i := i + 1;
-    }
+  while (i < r.Length)
+    invariant i <= r.Length
+    invariant forall k: nat :: k < i ==> r[k] == dest[k]
+  {
+    r[i] := dest[i];
+    i := i + 1;
+  }
+  assert r[..] == dest[..];
+  i := 0;
+  while (i < len)
+    invariant i <= len
+    invariant r[..dStart] == dest[..dStart]
+    invariant r[dStart..dStart + i] == src[sStart..sStart + i]
+    invariant r[dStart + len..] == dest[dStart + len..]
+  {
+    r[dStart + i] := src[sStart + i];
+    i := i + 1;
+  }
 }
