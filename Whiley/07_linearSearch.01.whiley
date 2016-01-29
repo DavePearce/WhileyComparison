@@ -10,14 +10,14 @@ function linearSearch(int[] arr, int val) -> (int r)
   // If index return, it matches val
   ensures r >= 0 ==> arr[r] == val
   // if failure, no matching element exists
-  ensures r == -1 ==> no { k in 0..|arr| | arr[k] == val }:
-//
+  ensures r == -1 ==> no { k in 0..|arr| | arr[k] == val }
+:
   int i = 0
   //
   while i < |arr|
     where i >= 0 && i <= |arr|
-    where all { k in 0..i | arr[k] < val }:
-  //
+    where all { k in 0..i | arr[k] < val }
+  :
     if arr[i] == val:
       return i
     else if arr[i] > val:

@@ -1,3 +1,4 @@
+// Status: not verified
 function count(items: seq<int>, item: int): nat
   decreases |items|
 {
@@ -6,7 +7,6 @@ function count(items: seq<int>, item: int): nat
       then (1 + count( items[1..], item ))
       else count( items[1..], item )
 }
-// Status: ???
 method occurences(items: array<int>, item: int) returns (r: nat)
   requires items != null
   ensures r <= items.Length

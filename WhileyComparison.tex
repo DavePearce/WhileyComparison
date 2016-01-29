@@ -126,21 +126,34 @@ As programmers we need some tools to assure us that, the code we work so long an
 
 Formal Logic is at first difficult to grasp for the majority of programmers and even the tools discussed here in require some background in Mathematical Logic, proof by contradiction, contrapositive and induction etc. Induction seems to be a tricky one not only for human beings but for automated deduction also, for instance, Z3 doesn't support induction (recursive) verification conditions, though there are structures available in Dafny for inductive proof, lemmas, functions, predicates (possibly in boogie?) One interesting thin that caught me out was the order of statements in the specification was important which I thought unusual as one would tend to think of certain  mathematical operations as commutative or associative and mathematical definitions as being declarative. But it would seem that logical operations in specifications employ short circuit logic which makes order of premises important.
 
-More often than not code made for one tool is easily transcribed to the other as long as there is a one to one mapping of structures used in formal verification of the program. The difference in range notation between the different tools is note worthy as in Dafny ranges can simply be seen mathematically \verb/0 <= x < length/, where as Whiley is \verb/x in 0..length/ and Spec\# \verb/x in (0:length)/ or \verb/x in (0..length - 1)/. In Whiley the \verb/a..b/ means mathematically $[a,b)$. In Spec\# \verb/(a:b)/ means  $[a,b)$ but \verb/(a..b)/ means $[a,b]$. I personally prefer Dafny's way for it's clarity though the others are short and concise, but this is a matter of taste. Potentially confusing off by one errors can be hard to see.
+More often than not code made for one tool is easily transcribed to the other as long as there is a one to one mapping of structures used in formal verification of the program. The difference in range notation between the different tools is note worthy as in Dafny ranges can simply be seen mathematically \verb/0 <= x < length/, where as Whiley is \verb/x in 0..length/ and Spec\# \verb/x in (0:length)/ or \verb/x in (0..length - 1)/. In Whiley the \verb/a..b/ means mathematically $[a,b)$. In Spec\# \verb/(a:b)/ means  $[a,b)$ (half-open interval) but \verb/(a..b)/ means $[a,b]$ (closed interval, inclusive.) I personally prefer Dafny's way for it's clarity though the others are short and concise, but this is a matter of taste. Potentially confusing off by one errors can be hard to see.
 
-Intuitively one has to establish a correspondence between any of the variables that change in the loop(s) of the program. Knowing if there has been enough specification or even a complete specification is not immediate and it is easy to come up with only a partial specification. Hence, it raises two main questions: how to be sure that our specification is complete, and how complete must a specification be. For the first question, one must reason on some model of the specified program. For the second question, no definitive answer is known. It depends on the context in which the specification is written and the kind of properties that must be established. The amount of specification required for a given function is very different when verifying a given property for a given application in which calls to the function always occur in a well-defined context and when specifying it as a library function which should be callable in as many contexts as possible.
+Intuitively one has to establish a correspondence between any of the variables that change in the loop(s) of the program...
 
-Overflow was not necessary to consider when programming with Whiley or Dafny, both have unbounded or mathematical, integers and reals as basic types, so, overflow is not possible (though heap overflow might be a concern but this is an internal issue.) Frama-C on the other hand distinguishes between \verb/int/ (bounded) and \verb/integer/ (unbounded) types resulting in the possibility for overflow within the specification and hence some extra thought is needed.
+Knowing if there has been enough specification or even a complete specification is not immediate and it is easy to come up with only a partial specification. Hence, it raises two main questions: how to be sure that our specification is complete, and how complete must a specification be. For the first question, one must reason on some model of the specified program. For the second question, no definitive answer is known. It depends on the context in which the specification is written and the kind of properties that must be established. The amount of specification required for a given function is very different when verifying a given property for a given application in which calls to the function always occur in a well-defined context and when specifying it as a library function which should be callable in as many contexts as possible.
 
-Array bounds checking is part of all the tested tools 
+Overflow was not necessary to consider when programming with Whiley or Dafny, both have unbounded or mathematical, integers and reals as basic types, so, overflow is not possible (though heap overflow might be a concern but this is an internal issue.) Frama-C on the other hand distinguishes between \verb/int/ (bounded) and \verb/integer/ (unbounded) types (since ACSL has to reflect the C code being specified) resulting in the possibility for overflow within the specification and hence a lot of extra thought is needed. For instance the difference between an \verb/int/ and \verb/unsigned int/ is that an \verb/unsigned int/ can be twice as larger as can possibly be stored in an \verb/int/. Exposing us to all of the corner cases and intricacies of the C type system.
 
-Termination...
+Array bounds checking is part of all the automated verification tools tested. One would expect this to be part of a static analysis tool, but in the context of verification this is necessary to always ensure correct execution and is therefore always checked. In Frama-C this is extremely cumbersome since arrays do not know their own bounds.
 
-Null and non-null types...
+Termination, I first came across proof of termination in Dafny where the \verb/decreasing/ keyword is used to express some variables in iterative or recursive code reaching a state of termination. For instance, in a while/for loop where we use \verb/i/ to traverse some linear data structure, that is \verb/data[i]/ and we know that \verb/i/ increases toward the end of the array, we can express this as \verb/decreasing max - i/. Similarly in Frama-C the same can be expressed as \verb/loop variant max - i/. but this kind declaration is missing from Whiley and Spec\#. Proof of termination can relax the specification of loop invariants, though the benchmarks in our comparison have no examples where this is necessary or applicable.
 
-Simplification and it's effects time taken to verify and translation into more/less verification conditions.
+Dafny and Frama-C need to have in their specifications the requirement that i.e arrays are not null \verb/requires array != \null/. where as Whiley and Spec\# have null and non-null types. In whiley a type can be defined as \verb/(null | int)/ otherwise all types are non-null. In Spec\# however a non-null type is denoted by a trailing exclamation mark. Conversion between null and non-null types was not a situation that encountered.
 
-Embedded code in specifications... lemmas, Pure Functions, Predicates...
+Most of the tools supply universal and existential quantifiers but Spec\# has some extras which make certain proofs easier to prove covering some common cases where counting is necessary:
+\begin{itemize}
+\item sum \{ int k in (0:a.Length); a[k] \};
+\item product \{ int k in (1..n); k \};
+\item min \{ int k in (0:a.Length); a[k] \};
+\item max \{ int k in (0:a.Length); a[k] \};
+\item count \{ int k in (0:n); a[k] \% 2 == 0 \};
+\end{itemize}
+
+Simplification and it's effects, time taken to verify $=>$ translation into more/less verification conditions.
+
+Dafny and Frama-C have facilities to allow embedding of code in the specifications in the form of  lemmas, pure functions and predicates. All of which have to . 
+
+in Frama-C, Dafny and Spec\# to cover the modification of data outside the scope of the current block of code (side-effects) there are keywords for just just this purpose. In Frama-C there is \verb/assigns/ clauses for function specifications and \verb/loop assigns/ for the loop specification in which case Frama-C makes no assumptions about any variables anywhere, being modified, it has to be explicitly stated, for instance \verb/assigns \nothing/ because without \verb/assigns/ clauses it is assumed that the code could modify everything. Where as Whiley, Dafny and Spec\# can look at the code and assert what is being modified and take this into account. Dafny will not allow the modification of parameter variables (function inputs) unless a \verb/modifies/ clause says otherwise.
 
 \section{Benchmarks}
 Selected benchmarks were intended to be simple since the verification of large blocks of code are exponentially asymptotic in logical deduction and\slash or not decidable in the worst case. The benchmarks range from simple to reasonably complex. Some of them were exercises recommended by David Pearce, where as others were suggested by Lindsey Grooves. To begin with, the main Idea of this project was to create some small programs for use in lecture slides or as examples in tutorials. 
@@ -193,8 +206,8 @@ This function should insert the item at the given index from the items array.  T
 	\hline
 	Env. & Palin. & FIO & LIO & Max & Occ & Slen & LSrch \\ \hline \hline
 	Whiley & \ding{51} & \ding{51} & \ding{51} &\ding{51} & \ding{56} & \ding{51} & \ding{51} \\ \hline
-	Dafny & \ding{51} & \ding{51} & \ding{51} &\ding{51} & \ding{51} & \ding{51} & \ding{51} \\
-	\hline
+	Dafny & \ding{51} & \ding{51} & \ding{51} &\ding{51} & \ding{56} & \ding{51} & \ding{51} \\ \hline
+	Spec\# & \ding{51} & \ding{51} & \ding{51} &\ding{51} & \ding{51} & \ding{51} & \ding{51} \\ \hline
 \end{tabular}
 \end{center}
 
@@ -203,8 +216,8 @@ This function should insert the item at the given index from the items array.  T
 	\hline
 	Env. & BSrch & Appd & Remv & Copy & Dplc & Inst & InSrt \\ \hline \hline
 	Whiley & \ding{56} & \ding{51} & \ding{56} &\ding{56} & \ding{56} & \ding{56} & \ding{56} \\ \hline
-	Dafny & \ding{51} & \ding{51} & \ding{51} &\ding{51} & \ding{51} & \ding{51} & \ding{51} \\
-	\hline
+	Dafny & \ding{51} & \ding{51} & \ding{51} &\ding{51} & \ding{51} & \ding{51} & \ding{56} \\ \hline
+	Spec\# & \ding{51} & \ding{51} & \ding{51} &\ding{56} & \ding{51} & \ding{51} & \ding{56} \\ \hline
 \end{tabular}
 \end{center}
 the loop invariants tended to be reflected in the postconditions.
@@ -277,48 +290,48 @@ The documentation for Whiley is by far the best from a novice perspective. But t
 	Dafny is a sophisticated tool\slash language for verification based on Microsofts' Z3 prover and Boogie with Monodevelop\slash Visual Studio. Though tests were performed on the command line to gain feedback from Dafny. Dafny can use pure functional code to help prove the correctness of imperative code for instance, only functions can used in specification unless qualified as 'function method'. These pure function definitions require very minimal specification in order to provide lemmas, axioms and other mathematical constructs to prove correct execution. One thing that struck me as odd was the use of short circuit logic in the specifications which implies a certain order to the specifications statements. Dafny doesn't require return statements in the usual way and defines a return variable(s) that is assigned to, and if necessary a 'return' can be called for early return from the call. Explicit and obvious reference to the returned variable was very convenient. All function\slash method parameters are immutable unless specified otherwise.
 	Inside the specifications arrays are treated differently from other containers but are implicitly convertible to the built in sequence type if needed. Which allows for the very convenient syntax: arr1[m..n] == arr2[m..n] for an adjacent element comparison avoiding the need for long winded predicates. But not so convenient in that a sequence cannot be easily converted back to an array. Arrays are always possibly null in Dafny and the there are attempts in the specification language to mitigate the issue of reference aliasing and other such memory management quirks (modifies clause.) Unlike Whiley arrays are of reference type and need to be null checked.
 \subsection{Frama-C}
-	When it comes to verifying C code Frama-C seems to be a current industry favourite. But I found the user gtk interface to be cumbersome and confusing. The ACSL language would appear to appeal more to an expert C programmer which I am not. Much expertise is needed to master Frama-C and every aspect and plugin have large manuals and tutorials available, all very heavy in detail. What I really wanted was a more general tool that would help point out where errors in my reasoning were evident. Frama-C offers only the vaguest of clues and errors in my reasoning are not always obvious. The issues of bounded types are dealt with up front and checked with the WP plugin through an RTE (runtime error) option that injects (over\slash under)flow checks. Specifications are meant to be written in a style that complements C and is analogous to C, even mirroring C conventions and C arithmetic. The lack of consolidation makes the various plugins difficult to integrate into a workflow. The ACSL specification language is littered with predefined predicates and detailed set of proof tools such as user defined predicates, behaviours, inductive(recursive) functions and axioms etc. Arrays were a very sticky issue in Frama-C and involve proof of non-null and the validation of the range of indices and elements. For loop invariants, proof of termination is provided by the loop 'variant' key word, which is hard to see in amongst loop 'invariant' clauses in the same comment code block. Also there are assigns clauses that define the frame of modification for both the function and loop invariants (loop assigns.) since unlike other tools Frama-C has no knowledge of what has been modified in the function or inside the loop (side effects). Since the C language does not have formal semantics one should take the verification of C code with a grain of salt, horribly coded nonsense with undefined results can still be verified.
+	When it comes to verifying C code Frama-C seems to be a current industry favourite. But I found the gtk user interface to be cumbersome and confusing. The ACSL language would appear to appeal more to an expert C programmer which I am not. Much expertise is needed to master Frama-C and every aspect and plugin have large manuals and tutorials available, all very heavy in detail. What I really wanted was a more general tool that would help point out where errors in my reasoning were evident. Frama-C offers only the vaguest of clues and errors in my reasoning are not always obvious. The issues of bounded types are dealt with up front and checked with the WP plugin through an RTE (runtime error) option that injects (over\slash under)flow checks. Specifications are meant to be written in a style that complements C and is analogous to C, even mirroring C conventions and C arithmetic. The lack of consolidation makes the various plugins difficult to integrate into a workflow. The ACSL specification language is littered with predefined predicates and detailed set of proof tools such as user defined predicates, behaviours, inductive(recursive) functions and axioms etc. Arrays were a very sticky issue in Frama-C and involve proof of non-null and the validation of the range of indices and elements. For loop invariants, proof of termination is provided by the loop 'variant' key word, which is hard to see in amongst loop 'invariant' clauses in the same comment code block. Also there are assigns clauses that define the frame of modification for both the function and loop invariants (loop assigns.) since unlike other tools Frama-C has no knowledge of what has been modified in the function or inside the loop (side effects). Since the C language does not have formal semantics one should take the verification of C code with a grain of salt, horribly coded nonsense with undefined results can still be verified.
 \subsection{Spec\#}
 	Spec\# having the same underlying workings as Dafny (a.k.a Boogie and Z3) if there are many differences between the two.
 \newpage
 \section{Appendix}
 \begin{multicols}{2}
-\lstinputlisting{Whiley/01_palindrome.01.whiley}
-\lstinputlisting{Whiley/02_firstIndexOf.01.whiley}
-\lstinputlisting{Whiley/03_lastIndexOf.01.whiley}
+\lstinputlisting[firstline=3]{Whiley/01_palindrome.01.whiley}
+\lstinputlisting[firstline=2]{Whiley/02_firstIndexOf.01.whiley}
+\lstinputlisting[firstline=3]{Whiley/03_lastIndexOf.01.whiley}
 \columnbreak
-\lstinputlisting{Dafny/01_palindrome.01.dfy}
-\lstinputlisting{Dafny/02_firstIndexOf.01.dfy}
-\lstinputlisting{Dafny/03_lastIndexOf.01.dfy}
+\lstinputlisting[firstline=3]{Dafny/01_palindrome.01.dfy}
+\lstinputlisting[firstline=2]{Dafny/02_firstIndexOf.01.dfy}
+\lstinputlisting[firstline=2]{Dafny/03_lastIndexOf.01.dfy}
 \newpage
-\lstinputlisting{Whiley/04_max.01.whiley}
-\lstinputlisting{Whiley/05_occurences.01.whiley}
-\lstinputlisting{Whiley/06_strlen.01.whiley}
+\lstinputlisting[firstline=2]{Whiley/04_max.01.whiley}
+\lstinputlisting[firstline=3]{Whiley/05_occurences.01.whiley}
+\lstinputlisting[firstline=3]{Whiley/06_strlen.01.whiley}
 \columnbreak
-\lstinputlisting{Dafny/04_max.01.dfy}
-\lstinputlisting{Dafny/05_occurences.01.dfy}
-\lstinputlisting{Dafny/06_strlen.01.dfy}
+\lstinputlisting[firstline=2]{Dafny/04_max.01.dfy}
+\lstinputlisting[firstline=2]{Dafny/05_occurences.01.dfy}
+\lstinputlisting[firstline=3]{Dafny/06_strlen.01.dfy}
 \newpage
-\lstinputlisting{Whiley/07_linearSearch.01.whiley}
-\lstinputlisting{Whiley/08_binarySearch.01.whiley}
-\lstinputlisting{Whiley/09_append.01.whiley}
+\lstinputlisting[firstline=2]{Whiley/07_linearSearch.01.whiley}
+\lstinputlisting[firstline=3]{Whiley/08_binarySearch.01.whiley}
+\lstinputlisting[firstline=3]{Whiley/09_append.01.whiley}
 \columnbreak
-\lstinputlisting{Dafny/07_linearSearch.01.dfy}
-\lstinputlisting{Dafny/08_binarySearch.01.dfy}
-\lstinputlisting{Dafny/09_append.01.dfy}
+\lstinputlisting[firstline=2]{Dafny/07_linearSearch.01.dfy}
+\lstinputlisting[firstline=2]{Dafny/08_binarySearch.01.dfy}
+\lstinputlisting[firstline=3]{Dafny/09_append.01.dfy}
 \newpage
-\lstinputlisting{Whiley/10_remove.01.whiley}
-\lstinputlisting{Whiley/11_copy.01.whiley}
+\lstinputlisting[firstline=2]{Whiley/10_remove.01.whiley}
+\lstinputlisting[firstline=3]{Whiley/11_copy.01.whiley}
 \columnbreak
-\lstinputlisting{Dafny/10_remove.01.dfy}
-\lstinputlisting{Dafny/11_copy.01.dfy}
+\lstinputlisting[firstline=6]{Dafny/10_remove.01.dfy}
+\lstinputlisting[firstline=2]{Dafny/11_copy.01.dfy}
 \newpage
-\lstinputlisting{Whiley/12_displace.01.whiley}
+\lstinputlisting[firstline=4]{Whiley/12_displace.01.whiley}
+\lstinputlisting[firstline=3]{Whiley/13_insert.01.whiley}
 \columnbreak
-\lstinputlisting{Dafny/12_displace.01.dfy}
+\lstinputlisting[firstline=3]{Dafny/12_displace.01.dfy}
+\lstinputlisting[firstline=2]{Dafny/13_insert.01.dfy}
 \newpage
-\lstinputlisting{Whiley/13_insert.01.whiley}
-\columnbreak
-\lstinputlisting{Dafny/13_insert.01.dfy}
+
 \end{multicols}
 \end{document}

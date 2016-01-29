@@ -1,3 +1,4 @@
+// Status: verified
 class Example {
   public int occurences(int[]! items, int item)
     ensures result <= items.Length;

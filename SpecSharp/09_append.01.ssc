@@ -1,5 +1,4 @@
 // Status: verifies and compiles
-// Append a single item onto the end of the array
 class Example {
   public int[] append( int[]! items, int item )
     requires items.Length > 0;
