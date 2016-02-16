@@ -4,7 +4,7 @@ function lastIndexOf(int[] items, int item) -> (int r)
   // If result is positive, element at that position must match item
   ensures r >= 0 ==> items[r] == item
   // If result is positive, no element at greater position matches item
-  ensures r >= 0 ==> all { x in (r + 1)..|items| | items[x] != item }
+  ensures r >= 0 ==> no { x in (r + 1)..|items| | items[x] == item }
   // If result is negative, no element matches item
   ensures r < 0 ==> no { x in 0..|items| | items[x] == item }
 :
@@ -15,8 +15,7 @@ function lastIndexOf(int[] items, int item) -> (int r)
     where no { x in i..|items| | items[x] == item }
   :
     i = i - 1
-    if items[i] == item
-    :
+    if items[i] == item:
       return i
   // didn't find item in entire list
   return -1 

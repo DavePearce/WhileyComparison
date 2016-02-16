@@ -1,4 +1,4 @@
-// Status: verifier infinite loop
+// Status: verified
 
 predicate rotated(o:seq<int>, r:seq<int>) 
 requires |o| == |r|
