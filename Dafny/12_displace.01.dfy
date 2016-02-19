@@ -3,11 +3,11 @@
 predicate rotated(arr1:seq<int>, arr2:seq<int>) 
   requires |arr1| == |arr2|
 {
-  (foldall i :: 1 <= i < |arr1| ==> arr2[i] == arr1[i - 1]) &&
+  (forall i :: 1 <= i < |arr1| ==> arr2[i] == arr1[i - 1]) &&
   ( |arr1| > 0 ==> arr2[0] == arr1[ |arr1| - 1 ] )
 }
 method displace(arr: array<int>, start: nat, len: nat)
-  returns (r: array<int>)
+    returns (r: array<int>)
   requires arr != null
   requires len > 0
   requires start + len <= arr.Length

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (Web2C 2015) (preloaded format=pdflatex 2015.12.17)  16 FEB 2016 17:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (Web2C 2015) (preloaded format=pdflatex 2015.12.17)  19 FEB 2016 18:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -670,59 +670,73 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 69.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 69.
+ [1
 
-(/usr/pkg/share/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2015/06/04 1.6 listings language file
-) [1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 132.
+(Font)              <7> on input line 114.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 132.
- [2] [3]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 152.
+(Font)              <5> on input line 114.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 119.
 
 
 (/usr/pkg/share/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 152.
- [4] [5] [6]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 119.
+ [4] [5] [6] [7]
 (/usr/pkg/share/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 (/usr/pkg/share/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-) [7] [8] [9]
+)
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 231.
+
+
+(/usr/pkg/share/texmf-dist/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/it' in size <10> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 231.
+
+Overfull \hbox (13.75072pt too wide) in paragraph at lines 231--232
+[][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 233.
+[8] [9] [10] (/usr/pkg/share/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+)
 (./Whiley/01_palindrome.01.whiley) (./Whiley/02_firstIndexOf.01.whiley)
 (./Whiley/03_lastIndexOf.01.whiley) (./Dafny/01_palindrome.01.dfy)
-(./Dafny/02_firstIndexOf.01.dfy) (./Dafny/03_lastIndexOf.01.dfy) [10]
+(./Dafny/02_firstIndexOf.01.dfy) (./Dafny/03_lastIndexOf.01.dfy) [11]
 (./Whiley/04_max.01.whiley) (./Whiley/05_occurences.01.whiley)
 (./Whiley/06_strlen.01.whiley) (./Dafny/04_max.01.dfy)
-(./Dafny/05_occurences.01.dfy) (./Dafny/06_strlen.01.dfy) [11]
+(./Dafny/05_occurences.01.dfy) (./Dafny/06_strlen.01.dfy) [12]
 (./Whiley/07_linearSearch.01.whiley) (./Whiley/08_binarySearch.01.whiley)
 (./Whiley/09_append.01.whiley) (./Dafny/07_linearSearch.01.dfy)
-(./Dafny/08_binarySearch.01.dfy) (./Dafny/09_append.01.dfy) [12]
+(./Dafny/08_binarySearch.01.dfy) (./Dafny/09_append.01.dfy) [13]
 (./Whiley/10_remove.01.whiley) (./Whiley/11_copy.01.whiley)
-(./Dafny/10_remove.01.dfy) (./Dafny/11_copy.01.dfy) [13]
+(./Dafny/10_remove.01.dfy) (./Dafny/11_copy.01.dfy) [14]
 (./Whiley/12_displace.01.whiley) (./Whiley/13_insert.01.whiley)
 (./Dafny/12_displace.01.dfy) (./Dafny/13_insert.01.dfy
 Overfull \hbox (9.32056pt too wide) in paragraph at lines 21--22
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][][][][][] 
+][][][][][][][][] 
  []
 
-) [14] (./WhileyComparison.aux) ) 
+) [15] (./WhileyComparison.aux) ) 
 Here is how much of TeX's memory you used:
- 6909 strings out of 493889
- 98246 string characters out of 6158402
- 292870 words of memory out of 5000000
- 10027 multiletter control sequences out of 15000+600000
- 10898 words of font info for 39 fonts, out of 8000000 for 9000
+ 6957 strings out of 493889
+ 98829 string characters out of 6158402
+ 291988 words of memory out of 5000000
+ 10071 multiletter control sequences out of 15000+600000
+ 11244 words of font info for 40 fonts, out of 8000000 for 9000
  774 hyphenation exceptions out of 8191
- 44i,11n,49p,1946b,1189s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,12n,49p,1945b,1338s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/pkg/share/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmbx10.pfb></usr/pkg/share/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmbx9.pfb></usr/pkg/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.p
@@ -731,14 +745,17 @@ kg/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/pkg/share/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/pkg/share/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmr17.pfb></usr/pkg/share/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmr5.pfb></usr/pkg/share/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmss12.pfb></usr/pkg/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
-10.pfb></usr/pkg/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></u
-sr/pkg/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/pkg/shar
-e/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on WhileyComparison.pdf (14 pages, 198828 bytes).
+ts/cm/cmr7.pfb></usr/pkg/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.p
+fb></usr/pkg/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/p
+kg/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/pkg/share/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/pkg/share/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/pkg/share/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmtt8.pfb></usr/pkg/share/texmf-dist/fonts/type1/urw/zapfd
+ing/uzdr.pfb>
+Output written on WhileyComparison.pdf (15 pages, 238614 bytes).
 PDF statistics:
- 102 PDF objects out of 1000 (max. 8388607)
- 72 compressed objects within 1 object stream
+ 117 PDF objects out of 1000 (max. 8388607)
+ 83 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
